@@ -32,6 +32,12 @@ def internal_server_error(e):
 def index():
 	return render_template("index.html")
 
+# Import a module / component using its blueprint handler variable (mod_auth)
+from mod_auth.controller import mod_auth as auth_module
+
+# Register blueprint(s)
+app.register_blueprint(auth_module)
+
 # @app.route('/', methods = ['POST', 'GET'])
 # def index():
 # 	ingredients = List.query.order_by(List.date_created)

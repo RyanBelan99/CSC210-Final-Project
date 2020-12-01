@@ -10,7 +10,7 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install Half Ba
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-export FLASK_APP=app.py
+export FLASK_APP=app/app.py
 ```
 To set to development run
 ```bash
