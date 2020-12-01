@@ -2,6 +2,29 @@ body {
     background-color: #fff5d7;
 }
 
+.h1 {
+    width: 100%;
+    float: center;
+}
+
+.recipe_1 {
+  border-style: double;
+  width: 28%;
+  margin-left: 5%;
+  margin-right: 3%;
+}
+
+.recipe_2 {
+  border-style: double;
+  width: 28%;
+  margin-right: 3%;
+}
+
+.recipe_3 {
+  border-style: double;
+  width: 28%;
+  margin-right: 5%;
+  
 .header {
     width: 100%;
     float: left;
