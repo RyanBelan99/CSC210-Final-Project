@@ -38,46 +38,5 @@ from app.mod_auth.controller import mod_auth as auth_module
 # Register blueprint(s)
 app.register_blueprint(auth_module)
 
-# @app.route('/', methods = ['POST', 'GET'])
-# def index():
-# 	ingredients = List.query.order_by(List.date_created)
-# 	return render_template("index.html", ingredients = ingredients)
-
-
-# @app.route('/insert', methods = ['GET', 'POST'])
-# def insert():
-# 	if request.method == 'POST':
-# 		item = request.form['item']
-# 		new_ingredient = List(item = item)
-# 		try:
-# 			db.session.add(new_ingredient)
-# 			db.session.commit()
-# 		except:
-# 			return "Error adding to database"
-# 		return redirect(url_for('.index'))
-
-
-# @app.route('/update', methods = ['GET', 'POST'])
-# def update():
-# 	if request.method == 'POST':
-# 		update_ingredient = List.query.get(request.form.get('id'))
-# 		update_ingredient.item = request.form['item']
-# 		try:
-# 			db.session.commit()
-# 		except:
-# 			return "Error updating to database"
-# 		return redirect(url_for('.index'))
-
-
-# @app.route('/delete/<id>', methods = ['GET', 'POST'])
-# def delete(id):
-# 	delete_ingredient = List.query.get(id)
-# 	db.session.delete(delete_ingredient)
-# 	try:
-# 		db.session.commit()
-# 	except:
-# 		return "Error deleting from database"
-# 	return redirect(url_for('.index'))
-
 if __name__ == "__main__":
     app.run(debug=True)

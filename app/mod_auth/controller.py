@@ -13,15 +13,15 @@ def signin():
     return render_template("login.html")
 
 @mod_auth.route('/login', method=['POST'])
-#def signin_post():
+def login_post():
 
     # If sign in form is submitted
-    #form = LoginForm(request.form)
+    form = LoginForm(request.form)
 
-    # # Verify the sign in form
-    #if form.validate_on_submit():
-        # user = User.query.filter_by(email=form.email.data).first()
-      #  if user and check_password_hash(user.password, form.password.data):
+    # Verify the sign in form
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user and check_password_hash(user.password, form.password.data):
 
     #         session['user_id'] = user.id
 
