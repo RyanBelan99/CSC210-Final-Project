@@ -2,31 +2,26 @@ body {
     background-color: #fff5d7;
 }
 
-.header {
+.h1 {
     width: 100%;
-    float: left;
+    float: center;
 }
 
-.info {
-    text-align: center;
-    width: 100%;
-    float: left;
-    background: #ff5e6c;
-    border-radius: 25px;
-    margin-bottom: 10px;
+.recipe_1 {
+  border-style: double;
+  width: 28%;
+  margin-left: 5%;
+  margin-right: 3%;
 }
 
-.image img {
-    max-width: 350px;
+.recipe_2 {
+  border-style: double;
+  width: 28%;
+  margin-right: 3%;
 }
 
-.image {
-    width: 25%;
-    float: left;
-    margin-right: 5%;
-}
-
-.cooking {
-    width: 70%;
-    float: left;
+.recipe_3 {
+  border-style: double;
+  width: 28%;
+  margin-right: 5%;
 }
