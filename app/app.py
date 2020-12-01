@@ -32,6 +32,10 @@ def internal_server_error(e):
 def index():
 	return render_template("index.html")
 
+@app.route('/posts/')
+def posts():
+    return render_template("posts.html")
+
 # Import a module / component using its blueprint handler variable (mod_auth)
 from app.mod_auth.controller import mod_auth as auth_module
 
