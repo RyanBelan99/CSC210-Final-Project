@@ -6,7 +6,7 @@ from flask import Blueprint, request, render_template, \
 # from werkzeug import check_password_hash, generate_password_hash
 
 # Import the database object from the main app module
-from app import db
+from app.app import db
 
 # # Import module forms
 # from app.mod_auth.forms import LoginForm
@@ -15,7 +15,7 @@ from app import db
 # from app.mod_auth.models import User
 
 # Define the blueprint: 'auth', set its url prefix: app.url/auth
-mod_auth = Blueprint('auth', __name__, url_prefix='/auth')
+mod_auth = Blueprint('auth', __name__, url_prefix='/auth', template_folder='templates')
 
 # Set the route and accepted methods
 @mod_auth.route('/signin/', methods=['GET', 'POST'])

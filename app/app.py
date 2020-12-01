@@ -33,7 +33,7 @@ def index():
 	return render_template("index.html")
 
 # Import a module / component using its blueprint handler variable (mod_auth)
-from mod_auth.controller import mod_auth as auth_module
+from app.mod_auth.controller import mod_auth as auth_module
 
 # Register blueprint(s)
 app.register_blueprint(auth_module)
