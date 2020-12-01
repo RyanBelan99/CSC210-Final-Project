@@ -8,15 +8,13 @@ from flask_migrate import Migrate
 
 app = Flask(__name__)
 application = app
-app.config['SECRET_KEY'] = 'assignment10'
+app.config['SECRET_KEY'] = 'veryverysecretkey'
 
 bootstrap = Bootstrap(app)
 moment = Moment(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///list.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
 db = SQLAlchemy(app)
-
 migrate = Migrate(app,db)
 
 @app.errorhandler(404)
@@ -31,12 +29,15 @@ def internal_server_error(e):
 @app.route('/', methods = ['POST', 'GET'])
 def index():
 	return render_template("index.html")
+   
 
 # Import a module / component using its blueprint handler variable (mod_auth)
-from app.mod_auth.controller import mod_auth as auth_module
+from .mod_auth.controller import mod_auth as auth_module
+from .mod_main.controller import mod_main as 
 
 # Register blueprint(s)
 app.register_blueprint(auth_module)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
