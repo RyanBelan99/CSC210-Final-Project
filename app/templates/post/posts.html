@@ -5,8 +5,15 @@
 {% block page_content %}
 <div class="row">
     <div class="col-md-6">
-        <h1>Your Recipes</h1>
+        <h1>This Week's Recipes</h1>
     </div>
+    {% if recipes %}
+        <ul>
+            {% for recipe in recipes %}
+            <li>{{ recipe }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <div class="col-md-1"></div>
     <div class="col-md-3">
         <a href="{{ url_for('mod_post.createPost') }}" class="btn btn-info" role="button">Create Post</a>

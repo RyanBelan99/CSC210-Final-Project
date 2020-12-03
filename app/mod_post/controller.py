@@ -11,29 +11,29 @@ def posts():
 
 @mod_post.route('/createPost', methods=['POST', 'GET'])
 def createPost():
-        #if request.method == 'POST':
-        #    form = PostForm(request.form)
-        #     new_recipe = Recipe(title = form.title, ingredients = form.ingredients, instructions = form.instructions)
-        #
+        ## The more working one
+        # form = PostForm(request.form)
+        # if form.validate_on_submit():
+        #     new_recipe = Recipe(title = form.title.data, ingredients = form.ingredients.data, instructions = form.instructions.data)
         #     try:
         #         db.session.add(new_recipe)
         #         db.session.commit()
-        #         return redirect('post/posts.html')
+        #         return render_template("post/posts.html")
         #     except:
         #         return "There was an error adding a new recipe"
         # else:
         #     recipes = Recipe.query.order_by(Recipe.date_created)
-        # return render_template("post/createPost.html", form=form, recipes=recipes)
+        #     return render_template("post/createPost.html", form=form)
 
         form = PostForm(request.form)
         if form.validate_on_submit():
-            new_recipe = Recipe(title = form.title, ingredients = form.ingredients, instructions = form.instructions)
+            new_recipe = Recipe(title = form.title.data, ingredients = form.ingredients.data, instructions = form.instructions.data)
             try:
                 db.session.add(new_recipe)
                 db.session.commit()
-                return render_template("post/posts.html")
+                recipes = Recipe.query.order_by(Recipe.date_created)
+                return render_template("post/posts.html", recipes=recipes)
             except:
                 return "There was an error adding a new recipe"
         else:
-            recipes = Recipe.query.order_by(Recipe.date_created)
             return render_template("post/createPost.html", form=form)
