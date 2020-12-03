@@ -5,6 +5,5 @@ from app import db, app
 migrate = Migrate(app,db)
 
 
-
  
 
