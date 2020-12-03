@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="center"> 
+        <h1>Create Your Haft-Baked Account</h1>
+        <hr>
+        <form action="" methods="POST">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.name.label }}<br>
+                {{ form.name(size=32) }}
+            </p>
+            <p>
+                {{ form.username.label }}<br>
+                {{ form.username(size=32) }}
+            </p>
+            <p>
+                {{ form.password.label }}<br>
+                {{ form.password(size=32) }}
+            </p>
+            <p> {{ form.submit() }}</p>
+        </form>    
+        <hr>
+    </div>
+{% endblock %}

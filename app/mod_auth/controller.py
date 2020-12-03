@@ -1,42 +1,26 @@
-# Import flask dependencies
-from flask import Blueprint, request, render_template, \
-                  flash, g, session, redirect, url_for
+from flask import Blueprint, request, render_template, flash, g, session, redirect, url_for
+from app import db
+from app.entities.models import LoginForm
 
-# Import password / encryption helper tools
-# from werkzeug import check_password_hash, generate_password_hash
+mod_auth = Blueprint('mod_auth', __name__, url_prefix='/mod_auth')
 
-# Import the database object from the main app module
-from app.app import db
+@mod_auth.route('/login')
+def login():
+    return render_template("login.html")
 
-# # Import module forms
-# from app.mod_auth.forms import LoginForm
+@mod_auth.route('/login', methods=['POST'])
+def login_post():
+    return render_template("login.html")
 
-# # Import module models (i.e. User)
-# from app.mod_auth.models import User
+@mod_auth.route('/signup', methods=['POST'])
+def signup():
+    username = request.form.get('username')
+    password = request.form.get('password')
+    return redirect(url_for('mod_auth.login'))
 
-# Define the blueprint: 'auth', set its url prefix: app.url/auth
-mod_auth = Blueprint('auth', __name__, url_prefix='/auth', template_folder='templates')
 
-# Set the route and accepted methods
-@mod_auth.route('/signin/', methods=['GET', 'POST'])
-def signin():
+@mod_auth.route('/logout')    
+def logout():
+    return redirect(url_for('mod_main.index.html')) 
 
-    # If sign in form is submitted
-    form = LoginForm(request.form)
 
-    # # Verify the sign in form
-    # if form.validate_on_submit():
-
-    #     user = User.query.filter_by(email=form.email.data).first()
-
-    #     if user and check_password_hash(user.password, form.password.data):
-
-    #         session['user_id'] = user.id
-
-    #         flash('Welcome %s' % user.name)
-
-    #         return redirect(url_for('auth.home'))
-
-    #     flash('Wrong email or password', 'error-message')
-
-    return render_template("auth/signin.html", form=form)
