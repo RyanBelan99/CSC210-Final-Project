@@ -2,7 +2,7 @@ from flask import Blueprint, request, render_template, flash, g, session, redire
 from app import db
 from app.entities.models import LoginForm
 
-mod_auth = Blueprint('mod_auth', __name__, url_prefix='/mod_auth')
+mod_auth = Blueprint('mod_auth', __name__)
 
 @mod_auth.route('/login')
 def login():
