@@ -26,7 +26,7 @@ def create_app():
     login_manager.login_view = 'mod_main.index'
     login_manager.init_app(app)
     
-    from app.entities.users import User   
+    from app.dbschema.users import User   
 
     @login_manager.user_loader
     def load_user(user_id):
@@ -46,6 +46,9 @@ def create_app():
 
     from .mod_main.controller import mod_main as main_module
     app.register_blueprint(main_module)
+
+    from .mod_post.controller import mod_post as post_module
+    app.register_blueprint(post_module)
 
     return app    
 
