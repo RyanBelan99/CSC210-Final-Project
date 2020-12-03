@@ -11,7 +11,7 @@ def posts():
 
 @mod_post.route('/createPost', methods=['POST', 'GET'])
 def createPost():
-        ## The more working one
+        ## The more working ones
         # form = PostForm(request.form)
         # if form.validate_on_submit():
         #     new_recipe = Recipe(title = form.title.data, ingredients = form.ingredients.data, instructions = form.instructions.data)
