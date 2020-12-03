@@ -16,21 +16,22 @@ def create_app():
     bootstrap = Bootstrap(app)
     moment = Moment(app)
     application = app
-    
+
     app.config['SECRET_KEY'] = 'veryverysecretkey'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///list.db'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False    
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
 
     login_manager = LoginManager()
     login_manager.login_view = 'mod_main.index'
     login_manager.init_app(app)
-    
-    from app.dbschema.users import User   
+
+    from app.dbschema.users import User
+    from app.dbschema.recipe import Recipe
 
     @login_manager.user_loader
     def load_user(user_id):
-        return User.query.get(int(user_id))  
+        return User.query.get(int(user_id))
 
     @app.errorhandler(404)
     def page_not_found(e):
@@ -50,6 +51,4 @@ def create_app():
     from .mod_post.controller import mod_post as post_module
     app.register_blueprint(post_module)
 
-    return app    
-
-
+    return app
