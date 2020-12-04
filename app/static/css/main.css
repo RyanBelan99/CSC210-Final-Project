@@ -58,3 +58,7 @@ background: inherit;
 .navbar {
     margin-bottom: 0px;
 }
+
+.top-margin {
+    margin-top:20px;
+}

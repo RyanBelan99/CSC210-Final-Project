@@ -50,6 +50,9 @@ def create_app():
     from .mod_post.controller import mod_post as post_module
     app.register_blueprint(post_module)
 
+    from .mod_user.controller import mod_user as user_module
+    app.register_blueprint(user_module)
+
     return app    
 
 
