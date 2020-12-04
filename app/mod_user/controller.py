@@ -10,7 +10,8 @@ def profile():
         user = current_user.name
         birthday = current_user.birth
         username = current_user.username
-        return render_template("user/profile.html", user=user, birthday=birthday, username=username)
+        recipes = current_user.recipes
+        return render_template("user/profile.html", user=user, birthday=birthday, username=username, recipes=recipes)
     return render_template("user/profile.html")
 
 @mod_user.route('/edit')
