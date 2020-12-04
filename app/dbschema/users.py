@@ -2,6 +2,7 @@ from flask import Flask
 from flask_login import UserMixin
 from app import db
 from app.dbschema.recipe import Recipe
+from app.dbschema.likes import LikePost
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -11,6 +12,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), unique=True, index=True)
     password = db.Column(db.String(128))
     recipes = db.relationship('Recipe', backref='users', lazy=True)
+    liked = db.relationship('LikePost', foreign_keys='LikePost.user_id', backref='users', lazy='dynamic')
 
 
     def __init__(self,name,birth,username,password):

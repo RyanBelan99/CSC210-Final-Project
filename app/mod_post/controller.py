@@ -6,7 +6,7 @@ from flask_login import current_user
 
 mod_post = Blueprint('mod_post', __name__)
 
-@mod_post.route('/posts')
+@mod_post.route('/posts', methods=['POST', 'GET'])
 def posts():
         recipes = Recipe.query.order_by(Recipe.date_created)
         return render_template("post/posts.html", recipes=recipes)
@@ -30,3 +30,8 @@ def createPost():
                 return render_template("post/createPost.html", form=form)
         else:
             return redirect(url_for('mod_auth.login'))
+
+# @mod_post.route('/likePost')
+# def like():
+#     if current_user.is_authenticated:
+#
