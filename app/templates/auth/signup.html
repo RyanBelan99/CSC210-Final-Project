@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="center"> 
+    <div style="text-align:center"> 
         <h1>Create Your Haft-Baked Account</h1>
         <hr>
         <form action="" methods="POST">
@@ -9,6 +9,10 @@
             <p>
                 {{ form.name.label }}<br>
                 {{ form.name(size=32) }}
+            </p>
+            <p>
+                {{ form.birth.label }}<br>
+                {{ form.birth(size=32) }}
             </p>
             <p>
                 {{ form.username.label }}<br>

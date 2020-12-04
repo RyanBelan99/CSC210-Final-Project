@@ -1,5 +1,4 @@
-
-from wtforms import SubmitField, StringField, PasswordField, TextAreaField, validators
+from wtforms import SubmitField, StringField, PasswordField, IntegerField, DateField, validators
 from flask_wtf import FlaskForm 
 
 
@@ -12,7 +11,8 @@ class LoginForm(FlaskForm):
 
 
 class SignupForm(FlaskForm):
-    name = StringField('Name')
+    name = StringField('Name', [validators.DataRequired()])
+    birth = DateField("Enter your Birthday", [validators.DataRequired()])
     username = StringField('Enter a Username', [validators.DataRequired()])
     password = PasswordField('Enter a Password', [validators.DataRequired(), validators.Length(min=4, max=62)])
     submit = SubmitField('Signup')
