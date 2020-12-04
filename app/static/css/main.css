@@ -40,14 +40,14 @@ h2 {
 }
 
 h3 {
-margin: 0;
-padding-left: 10px;
-font-size: 300%;
-letter-spacing: 3px;
-text-transform: uppercase;
-border-bottom: 1px solid #eee;
-color:  #000;
-background: inherit;
+  margin: 0;
+  padding-left: 10px;
+  font-size: 300%;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #eee;
+  color:  #000;
+  background: inherit;
 }
 
 .nav a{

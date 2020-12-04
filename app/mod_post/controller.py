@@ -1,13 +1,27 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect
+from app import db
 from app.entities.models import PostForm
+from app.dbschema.recipe import Recipe
 
 mod_post = Blueprint('mod_post', __name__)
 
 @mod_post.route('/posts')
 def posts():
-        return render_template("post/posts.html")
+        recipes = Recipe.query.order_by(Recipe.date_created)
+        return render_template("post/posts.html", recipes=recipes)
 
 @mod_post.route('/createPost', methods=['POST', 'GET'])
 def createPost():
         form = PostForm(request.form)
-        return render_template("post/createPost.html", form=form)
+        if form.validate_on_submit():
+            new_recipe = Recipe(title = form.title.data, ingredients = form.ingredients.data, instructions = form.instructions.data)
+            try:
+                db.session.add(new_recipe)
+                db.session.commit()
+                recipes = Recipe.query.order_by(Recipe.date_created)
+                #make redirect work
+                return render_template("post/posts.html", recipes=recipes)
+            except:
+                return "There was an error adding a new recipe"
+        else:
+            return render_template("post/createPost.html", form=form)
