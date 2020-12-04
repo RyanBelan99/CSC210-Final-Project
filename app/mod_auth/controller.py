@@ -39,4 +39,5 @@ def signup():
 
 @mod_auth.route('/logout')
 def logout():
-    return redirect(url_for('mod_main.index.html'))
+    logout_user()
+    return redirect(url_for('mod_main.index'))
