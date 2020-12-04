@@ -31,7 +31,8 @@ def createPost():
         else:
             return redirect(url_for('mod_auth.login'))
 
-# @mod_post.route('/likePost')
-# def like():
-#     if current_user.is_authenticated:
-#
+@mod_post.route('/likePost/<recipe_id>')
+def likePost(recipe_id):
+    if current_user.is_authenticated:
+        recipe = Recipe.query.filter_by(id=recipe_id)
+        return str(recipe_id)
