@@ -9,7 +9,9 @@ def index():
         return render_template("index.html")
 
 @mod_main.route('/login')
-def login(): 
+def login():
         return redirect(url_for('mod_auth.login'))
 
-
+# @mod_main.route('/createPost')
+# def postLogin():
+#         return redirect(url_for('mod_auth.login'))

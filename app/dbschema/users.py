@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_login import UserMixin
 from app import db
+from app.dbschema.recipe import Recipe
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -18,5 +19,6 @@ class User(UserMixin, db.Model):
         self.username = username 
         self.password = password 
 
+    #recipes = db.relationship('Recipe', backref='users', lazy=True)
     def __repr__(self):
         return '<User %r>' % self.username
