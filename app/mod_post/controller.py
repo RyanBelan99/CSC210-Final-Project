@@ -21,8 +21,7 @@ def createPost():
                     db.session.add(new_recipe)
                     db.session.commit()
                     recipes = Recipe.query.order_by(Recipe.date_created)
-                    #make redirect work
-                    return render_template("post/posts.html", recipes=recipes)
+                    return redirect(url_for('mod_post.posts'))
                 except:
                     return "There was an error adding a new recipe"
             else:
