@@ -1,4 +1,4 @@
-from wtforms import TextAreaField, SubmitField, StringField, PasswordField, IntegerField, DateField, validators
+from wtforms import TextAreaField, SubmitField, StringField, PasswordField, IntegerField, DateField, FieldList, validators
 from flask_wtf import FlaskForm
 
 
@@ -19,6 +19,6 @@ class SignupForm(FlaskForm):
 
 class PostForm(FlaskForm):
     title = StringField('Title', [validators.DataRequired()])
-    ingredients = TextAreaField('Ingrdients', [validators.DataRequired()])
-    instructions = TextAreaField('Instructions', [validators.DataRequired()])
+    ingredients = FieldList(StringField('ingredient'), min_entries=10, max_entries=10)
+    instructions = FieldList(StringField('instructions'), min_entries=10, max_entries=10)
     submit = SubmitField('Post')
