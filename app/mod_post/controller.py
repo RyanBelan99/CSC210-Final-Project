@@ -18,7 +18,7 @@ def createPost():
             if form.validate_on_submit():
                 ingredientList = ' '.join(form.ingredients.data).split()
                 instructionList = ' '.join(form.instructions.data).split()
-                new_recipe = Recipe(title = form.title.data, ingredients = ingredientList, instructions = instructionList)
+                new_recipe = Recipe(title = form.title.data, ingredients = ingredientList, instructions = instructionList, user_id=current_user.id)
                 try:
                     db.session.add(new_recipe)
                     db.session.commit()
@@ -30,4 +30,3 @@ def createPost():
                 return render_template("post/createPost.html", form=form)
         else:
             return redirect(url_for('mod_auth.login'))
-
