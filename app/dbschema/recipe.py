@@ -9,4 +9,4 @@ class Recipe(db.Model):
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
-        return '<item %r>' % self.id
+        return '<Recipe: %r>' % self.title

@@ -7,24 +7,11 @@ mod_post = Blueprint('mod_post', __name__)
 
 @mod_post.route('/posts')
 def posts():
-        return render_template("post/posts.html")
+        recipes = Recipe.query.order_by(Recipe.date_created)
+        return render_template("post/posts.html", recipes=recipes)
 
 @mod_post.route('/createPost', methods=['POST', 'GET'])
 def createPost():
-        ## The more working ones
-        # form = PostForm(request.form)
-        # if form.validate_on_submit():
-        #     new_recipe = Recipe(title = form.title.data, ingredients = form.ingredients.data, instructions = form.instructions.data)
-        #     try:
-        #         db.session.add(new_recipe)
-        #         db.session.commit()
-        #         return render_template("post/posts.html")
-        #     except:
-        #         return "There was an error adding a new recipe"
-        # else:
-        #     recipes = Recipe.query.order_by(Recipe.date_created)
-        #     return render_template("post/createPost.html", form=form)
-
         form = PostForm(request.form)
         if form.validate_on_submit():
             new_recipe = Recipe(title = form.title.data, ingredients = form.ingredients.data, instructions = form.instructions.data)
