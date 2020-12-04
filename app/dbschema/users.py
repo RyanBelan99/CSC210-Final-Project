@@ -10,7 +10,7 @@ class User(UserMixin, db.Model):
     birth = db.Column(db.String(10), nullable = False)
     username = db.Column(db.String(64), unique=True, index=True)
     password = db.Column(db.String(128))
-    #role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    recipes = db.relationship('Recipe', backref='users', lazy=True)
 
 
     def __init__(self,name,birth,username,password):
@@ -19,6 +19,5 @@ class User(UserMixin, db.Model):
         self.username = username
         self.password = password
 
-    #recipes = db.relationship('Recipe', backref='users', lazy=True)
     def __repr__(self):
         return '<User %r>' % self.username
