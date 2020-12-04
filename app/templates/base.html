@@ -25,18 +25,26 @@
         </div>
 
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="{{ url_for('mod_post.posts') }}">Posts</a></li>
-            </ul>
-            <ul class="nav navbar-nav">
-                <li><a href="{{ url_for('mod_auth.login') }}">Login</a></li>
-            </ul>
-            <ul class="nav navbar-nav">
-                <li><a href="{{ url_for('mod_auth.signup') }}">Signup</a></li>
-            </ul>
-            <ul class="nav navbar-nav">
-                <li><a href="{{ url_for('mod_user.profile') }}">Profile</a></li>
-            </ul>
+            {%if user %}
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url_for('mod_post.posts') }}">Posts</a></li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url_for('mod_user.profile') }}">Profile: {{ username }}</a></li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url_for('mod_auth.logout') }}">Logout</a></li>
+                </ul>
+            {% endif %}
+            {% if not user %}
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url_for('mod_auth.login') }}">Login</a></li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url_for('mod_auth.signup') }}">Signup</a></li>
+                </ul>
+            {% endif %}
+
         </div>
     </div>
 </div>

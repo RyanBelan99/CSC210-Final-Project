@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_migrate import Migrate
 from flask_bootstrap import Bootstrap
+from flask_login import current_user
 
 db = SQLAlchemy()
 
@@ -41,6 +42,15 @@ def create_app():
     @app.errorhandler(500)
     def internal_server_error(e):
         return render_template('500.html'), 500
+
+    @app.context_processor
+    def inject_user():
+        username = birthday = user = None
+        if current_user.is_authenticated:
+            user = current_user.name
+            birthday = current_user.birth
+            username = current_user.username
+        return dict(username=username, birthday=birthday, user=user)
 
     from .mod_auth.controller import mod_auth as auth_module
     app.register_blueprint(auth_module)
