@@ -14,8 +14,3 @@ def profile():
 def editProfile():
         form = SignupForm(request.form)
         return render_template("user/editProfile.html", form=form)
-
-# @mod_post.route('/createPost', methods=['POST', 'GET'])
-# def createPost():
-#         form = PostForm(request.form)
-#         return render_template("post/createPost.html", form=form)
