@@ -11,19 +11,26 @@
     <div class="col-md-3">
         <a href="{{ url_for('mod_post.createPost') }}" class="btn btn-info" role="button">Create Post</a>
     </div>
+</div>
+<div class="row">
     {% if recipes %}
         {% for recipe in recipes %}
         <div class="posting">
-          <table>
-              <tr>{{ recipe.title }}</tr>
-              <br>
-              <tr>{{ recipe.ingredients }}</tr>
-              <br>
-              <tr>{{ recipe.instructions }}</tr>
-              <br>
-          </table>
+            <h3>{{ recipe.title }}</h3>
+            <p>Ingredients</p>
+            <ul>
+                {% for ingredient in recipe.ingredients %}
+                    <li>{{ ingredient }}
+                {% endfor %}
+                
+            </ul>
+            <p>Instructions</p>
+            <ul>
+                {% for instruction in recipe.instructions %}
+                    <li>{{ instruction }}
+                {% endfor %}
+            </ul>
         </div>
-        <br>
         {% endfor %}
     {% endif %}
 </div>

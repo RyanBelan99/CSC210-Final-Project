@@ -14,7 +14,9 @@ def posts():
 def createPost():
         form = PostForm(request.form)
         if form.validate_on_submit():
-            new_recipe = Recipe(title = form.title.data, ingredients = form.ingredients.data, instructions = form.instructions.data)
+            ingredientList = ' '.join(form.ingredients.data).split()
+            instructionList = ' '.join(form.instructions.data).split()
+            new_recipe = Recipe(title = form.title.data, ingredients = ingredientList, instructions = instructionList)
             try:
                 db.session.add(new_recipe)
                 db.session.commit()
