@@ -2,6 +2,7 @@ from flask import Blueprint, request, render_template, flash, g, session, redire
 from app import db
 from app.entities.models import LoginForm, SignupForm
 from app.dbschema.users import User
+from flask_login import login_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
 mod_auth = Blueprint('mod_auth', __name__)
@@ -17,6 +18,7 @@ def login():
             flash("Password or Username is Incorrect")
             return redirect(url_for('mod_auth.login'))
         login_user(user)
+        return redirect(url_for('mod_user.profile'))
     return render_template('auth/login.html', form=form)
 
 @mod_auth.route('/signup', methods=['POST','GET'])
@@ -24,7 +26,7 @@ def signup():
     form = SignupForm(request.form)
     if form.validate_on_submit():
         name = request.form.get('name')
-        birth = request.form.get("birth")
+        birth = request.form.get('birth')
         username = request.form.get('username')
         password = generate_password_hash(request.form.get('password'))
         user_check = User.query.filter_by(username=username).first()
@@ -34,6 +36,7 @@ def signup():
         user_info = User(name=name, birth=birth, username=username, password=password)
         db.session.add(user_info)
         db.session.commit()
+        return redirect(url_for('mod_user.profile'))
     return render_template("auth/signup.html", form=form)
 
 

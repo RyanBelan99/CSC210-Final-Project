@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block page_content %}
-    <div style="text-align:center"> 
+    <div style="text-align:center">
         <h1>Login To Your Haft-Baked Account</h1>
         <hr>
-            <form action="" methods="POST">
+            <form action="" method="POST">
                 {{ form.hidden_tag() }}
-            <p>   
+            <p>
                 {{ form.username.label }}<br>
                 {{ form.username(size=32) }}
             </p>
