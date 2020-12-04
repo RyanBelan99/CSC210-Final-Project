@@ -1,6 +1,5 @@
-
-from wtforms import SubmitField, StringField, PasswordField, TextAreaField, validators
-from flask_wtf import FlaskForm 
+from wtforms import TextAreaField, SubmitField, StringField, PasswordField, IntegerField, DateField, validators
+from flask_wtf import FlaskForm
 
 
 class LoginForm(FlaskForm):
@@ -12,7 +11,8 @@ class LoginForm(FlaskForm):
 
 
 class SignupForm(FlaskForm):
-    name = StringField('Name')
+    name = StringField('Name', [validators.DataRequired()])
+    birth = DateField("Enter your Birthday", [validators.DataRequired()])
     username = StringField('Enter a Username', [validators.DataRequired()])
     password = PasswordField('Enter a Password', [validators.DataRequired(), validators.Length(min=4, max=62)])
     submit = SubmitField('Signup')
@@ -22,6 +22,3 @@ class PostForm(FlaskForm):
     ingredients = TextAreaField('Ingrdients', [validators.DataRequired()])
     instructions = TextAreaField('Instructions', [validators.DataRequired()])
     submit = SubmitField('Post')
-
-
-

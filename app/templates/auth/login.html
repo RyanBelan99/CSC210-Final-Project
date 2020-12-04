@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block page_content %}
-    <div class="center"> 
+    <div style="text-align:center"> 
         <h1>Login To Your Haft-Baked Account</h1>
         <hr>
             <form action="" methods="POST">
@@ -17,7 +17,7 @@
             <p>{{ form.submit() }}</p>
             </form>
         <hr>
-        <p><a herf="{{ url_for('/signup.html') }}">SIGN UP!</a></p>
+        <button href='mod_auth.signup.html'>SIGN UP</button>
     </div>
 
 {% endblock %}
