@@ -4,7 +4,7 @@ from flask_login import current_user
 
 mod_user = Blueprint('mod_user', __name__, url_prefix='/user')
 
-@mod_user.route('/')
+@mod_user.route('/profile')
 def profile():
     if current_user.is_authenticated:
         user = current_user.name
