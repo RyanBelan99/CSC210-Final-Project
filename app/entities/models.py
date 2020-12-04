@@ -1,5 +1,5 @@
-from wtforms import SubmitField, StringField, PasswordField, IntegerField, DateField, validators
-from flask_wtf import FlaskForm 
+from wtforms import TextAreaField, SubmitField, StringField, PasswordField, IntegerField, DateField, validators
+from flask_wtf import FlaskForm
 
 
 class LoginForm(FlaskForm):
@@ -22,6 +22,3 @@ class PostForm(FlaskForm):
     ingredients = TextAreaField('Ingrdients', [validators.DataRequired()])
     instructions = TextAreaField('Instructions', [validators.DataRequired()])
     submit = SubmitField('Post')
-
-
-
