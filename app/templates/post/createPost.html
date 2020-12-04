@@ -5,6 +5,7 @@
 
 {% block page_content %}
 <h1>Recipes</h1>
+<h3>You get 10 recipes and 10 steps. That's all you get</h3>
 
 <hr>
     <form action="" method="POST">
@@ -15,11 +16,16 @@
     </h3>
     <h3>
         {{ form.ingredients.label }}<br>
-        {{ form.ingredients(cols="70", rows="20") }}
+        {% for ingredient in form.ingredients.entries %}
+            {{ ingredient(size = 70) }}
+        {% endfor %}
+        
     </h3>
     <h3>
         {{ form.instructions.label }}<br>
-        {{ form.instructions(cols="70", rows="20") }}
+        {% for instruction in form.instructions.entries %}
+            {{ instruction(size = 70) }}
+        {% endfor %}
     </h3>
     <h3>{{ form.submit() }}</h3>
     </form>
