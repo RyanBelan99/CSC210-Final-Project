@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 
 {% block page_content %}
-    <div style="text-align:center"> 
+    <div style="text-align:center">
         <h1>Create Your Haft-Baked Account</h1>
         <hr>
-        <form action="" methods="POST">
+        <form action="" method="POST">
             {{ form.hidden_tag() }}
+            {% if form.errors %}
+            {{ form.errors }}
+            {% endif %}
             <p>
                 {{ form.name.label }}<br>
                 {{ form.name(size=32) }}
@@ -23,7 +26,7 @@
                 {{ form.password(size=32) }}
             </p>
             <p> {{ form.submit() }}</p>
-        </form>    
+        </form>
         <hr>
     </div>
 {% endblock %}
