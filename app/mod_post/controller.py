@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect, url_for
 from app import db
 from app.entities.models import PostForm
 from app.dbschema.recipe import Recipe
@@ -18,9 +18,7 @@ def createPost():
             try:
                 db.session.add(new_recipe)
                 db.session.commit()
-                recipes = Recipe.query.order_by(Recipe.date_created)
-                #make redirect work
-                return render_template("post/posts.html", recipes=recipes)
+                return redirect(url_for('mod_post.posts'))
             except:
                 return "There was an error adding a new recipe"
         else:
