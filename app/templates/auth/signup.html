@@ -6,9 +6,9 @@
         <hr>
         <form action="" method="POST">
             {{ form.hidden_tag() }}
-            {% if form.errors %}
+            <!-- {% if form.errors %}
             {{ form.errors }}
-            {% endif %}
+            {% endif %} -->
             <p>
                 {{ form.name.label }}<br>
                 {{ form.name(size=32) }}
