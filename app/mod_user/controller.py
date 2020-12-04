@@ -7,7 +7,8 @@ mod_user = Blueprint('mod_user', __name__, url_prefix='/user')
 @mod_user.route('/profile')
 def profile():
     if current_user.is_authenticated:
-        return render_template("user/profile.html")
+        recipes = current_user.recipes
+        return render_template("user/profile.html", recipes=recipes)
     return redirect(url_for("mod_auth.login"))
 
 @mod_user.route('/edit')
