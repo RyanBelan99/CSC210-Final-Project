@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from app import db
-from app.entities.models import PostForm
+from app.entities.models import PostForm, LikeForm
 from app.dbschema.recipe import Recipe
 from flask_login import current_user
 
