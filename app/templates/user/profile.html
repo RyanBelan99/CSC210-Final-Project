@@ -39,6 +39,7 @@
                         <li>{{ instruction }}
                     {% endfor %}
                 </ul>
+                <p>{{ recipe.liked.count() }} likes</p>
             </div>
             {% endfor %}
         {% endif %}

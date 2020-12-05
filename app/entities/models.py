@@ -1,14 +1,10 @@
 from wtforms import TextAreaField, SubmitField, StringField, PasswordField, IntegerField, DateField, FieldList, validators
 from flask_wtf import FlaskForm
 
-
 class LoginForm(FlaskForm):
     username = StringField('Username', [validators.DataRequired()])
     password = PasswordField('Password', [validators.DataRequired()])
     submit = SubmitField('Login')
-
-
-
 
 class SignupForm(FlaskForm):
     name = StringField('Name', [validators.DataRequired()])
@@ -23,6 +19,9 @@ class PostForm(FlaskForm):
     instructions = FieldList(StringField('instructions'), min_entries=10, max_entries=10)
     submit = SubmitField('Post')
 
+class LikeForm(FlaskForm):
+    submit = SubmitField('Like')
+    
 class EditProfileForm(FlaskForm):
     name = StringField('Name', [validators.DataRequired()])
     birth = StringField("Enter your Birthday", [validators.DataRequired()])

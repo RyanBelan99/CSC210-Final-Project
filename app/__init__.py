@@ -30,6 +30,7 @@ def create_app():
 
     from app.dbschema.users import User
     from app.dbschema.recipe import Recipe
+    from app.dbschema.likes import LikePost
 
     @login_manager.user_loader
     def load_user(user_id):
@@ -64,5 +65,4 @@ def create_app():
     from .mod_user.controller import mod_user as user_module
     app.register_blueprint(user_module)
 
-    return app    
-
+    return app
