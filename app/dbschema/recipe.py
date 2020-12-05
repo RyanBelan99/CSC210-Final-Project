@@ -1,5 +1,6 @@
 from app import db
 from datetime import datetime
+from sqlalchemy.ext.hybrid import hybrid_property
 class Recipe(db.Model):
     __tablename__ = 'recipe'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -12,3 +13,7 @@ class Recipe(db.Model):
 
     def __repr__(self):
         return '<Recipe %r>' % self.title
+
+    @hybrid_property
+    def likes(self):
+        return self.liked.count()
