@@ -24,5 +24,9 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return '<User %r>' % self.username
 
-    # def like(self, post):
-    #
+    def like(self, recipe):
+        if  LikePost.query.filter(LikePost.user_id == self.id, LikePost.recipe_id == recipe.id).count() > 0:
+            LikePost.query.filter_by(user_id=self.id, recipe_id=recipe.id).delete()
+        else:
+            like = LikePost(user_id=self.id, recipe_id=recipe.id)
+            db.session.add(like)

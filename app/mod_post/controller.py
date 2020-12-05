@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from app import db
 from app.entities.models import PostForm, LikeForm
 from app.dbschema.recipe import Recipe
+from app.dbschema.likes import LikePost
 from flask_login import current_user
 
 mod_post = Blueprint('mod_post', __name__)
@@ -32,6 +33,10 @@ def createPost():
         else:
             return redirect(url_for('mod_auth.login'))
 
-@mod_post.route('/likePost/<recipe_id>', methods=['POST', 'GET'])
+@mod_post.route('/likePost/<int:recipe_id>', methods=['POST', 'GET'])
 def likePost(recipe_id):
+    if current_user.is_authenticated:
+        recipe = Recipe.query.filter_by(id=recipe_id).first_or_404()
+        current_user.like(recipe)
+        db.session.commit()
         return redirect(url_for("mod_post.posts"))

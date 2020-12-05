@@ -31,11 +31,11 @@
                     <li>{{ instruction }}
                 {% endfor %}
             </ul>
-            <!-- <a href="{{ url_for('mod_post.likePost', recipe_id=recipe.id) }}">Like</a> -->
             <form action="{{ url_for('mod_post.likePost', recipe_id=recipe.id) }}" method="post">
                 {{ form.hidden_tag() }}
                 {{ form.submit(value='Like') }}
             </form>
+            {{ recipe.liked.count() }} likes
         </div>
         {% endfor %}
     {% endif %}
