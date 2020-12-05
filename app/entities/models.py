@@ -22,3 +22,13 @@ class PostForm(FlaskForm):
     ingredients = FieldList(StringField('ingredient'), min_entries=10, max_entries=10)
     instructions = FieldList(StringField('instructions'), min_entries=10, max_entries=10)
     submit = SubmitField('Post')
+
+class EditProfileForm(FlaskForm):
+    name = StringField('Name', [validators.DataRequired()])
+    birth = StringField("Enter your Birthday", [validators.DataRequired()])
+    submit = SubmitField('Submit')
+
+class ChangePasswordForm(FlaskForm):
+    curPassword = PasswordField('Current Password', [validators.DataRequired()])
+    newPassword = PasswordField('New Password', [validators.DataRequired()])
+    submit = SubmitField('Submit')
