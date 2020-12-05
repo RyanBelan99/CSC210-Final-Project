@@ -9,7 +9,8 @@ mod_post = Blueprint('mod_post', __name__)
 @mod_post.route('/posts', methods=['POST', 'GET'])
 def posts():
         recipes = Recipe.query.order_by(Recipe.date_created)
-        return render_template("post/posts.html", recipes=recipes)
+        form = LikeForm(request.form)
+        return render_template("post/posts.html", recipes=recipes, form=form)
 
 @mod_post.route('/createPost', methods=['POST', 'GET'])
 def createPost():
@@ -33,7 +34,4 @@ def createPost():
 
 @mod_post.route('/likePost/<recipe_id>', methods=['POST', 'GET'])
 def likePost(recipe_id):
-    form = LikeForm(request.form)
-    if form.validate_on_submit():#current_user.is_authenticated:
-        recipe = Recipe.query.filter_by(id=recipe_id)
-        return render_template("post/posts.html", form=form)
+        return redirect(url_for("mod_post.posts"))
