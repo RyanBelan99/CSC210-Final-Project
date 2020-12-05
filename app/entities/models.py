@@ -21,3 +21,13 @@ class PostForm(FlaskForm):
 
 class LikeForm(FlaskForm):
     submit = SubmitField('Like')
+    
+class EditProfileForm(FlaskForm):
+    name = StringField('Name', [validators.DataRequired()])
+    birth = StringField("Enter your Birthday", [validators.DataRequired()])
+    submit = SubmitField('Submit')
+
+class ChangePasswordForm(FlaskForm):
+    curPassword = PasswordField('Current Password', [validators.DataRequired()])
+    newPassword = PasswordField('New Password', [validators.DataRequired()])
+    submit = SubmitField('Submit')

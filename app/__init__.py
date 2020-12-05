@@ -46,12 +46,12 @@ def create_app():
 
     @app.context_processor
     def inject_user():
-        username = birthday = user = None
+        username = birth = name = None
         if current_user.is_authenticated:
-            user = current_user.name
-            birthday = current_user.birth
+            name = current_user.name
+            birth = current_user.birth
             username = current_user.username
-        return dict(username=username, birthday=birthday, user=user)
+        return dict(username=username, birth=birth, name=name)
 
     from .mod_auth.controller import mod_auth as auth_module
     app.register_blueprint(auth_module)
