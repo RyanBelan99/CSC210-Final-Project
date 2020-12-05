@@ -24,5 +24,5 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return '<User %r>' % self.username
 
-    def like(self, post):
-        
+    # def like(self, post):
+    #

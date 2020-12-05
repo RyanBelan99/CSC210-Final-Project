@@ -31,8 +31,9 @@ def createPost():
         else:
             return redirect(url_for('mod_auth.login'))
 
-@mod_post.route('/likePost/<recipe_id>')
+@mod_post.route('/likePost/<recipe_id>', methods=['POST', 'GET'])
 def likePost(recipe_id):
-    if current_user.is_authenticated:
+    form = LikeForm(request.form)
+    if form.validate_on_submit():#current_user.is_authenticated:
         recipe = Recipe.query.filter_by(id=recipe_id)
-        return str(recipe_id)
+        return render_template("post/posts.html", form=form)
