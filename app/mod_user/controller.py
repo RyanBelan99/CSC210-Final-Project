@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from app.entities.models import EditProfileForm, ChangePasswordForm
 from flask_login import current_user
 from app.dbschema.users import User
+from app.dbschema.recipe import Recipe
 from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -15,8 +16,8 @@ def checkLogn():
 @mod_user.route('/profile')
 def profile():
     recipes = current_user.recipes
+    recipes.sort(key=lambda x: x.date_created, reverse=True)
     return render_template("user/profile.html", recipes=recipes)
-    
 
 @mod_user.route('/edit', methods=['POST','GET'])
 def editProfile():
