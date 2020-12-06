@@ -31,7 +31,7 @@
                     <li>{{ instruction }}
                 {% endfor %}
             </ul>
-            <p>{{ recipe.liked.count() }} likes</p>
+            <p>{{ recipe.likes }} likes</p>
             <form action="{{ url_for('mod_post.likePost', recipe_id=recipe.id) }}" method="post">
                 {{ form.hidden_tag() }}
                 {{ form.submit(value='Like') }}

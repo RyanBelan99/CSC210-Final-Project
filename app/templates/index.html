@@ -38,7 +38,30 @@
     </a>
 
 
-  
+
   </div>
   <h3>This Week's Standings</h3>
+  <div class="row">
+      {% if recipes %}
+          {% for recipe in recipes %}
+          <div class="posting">
+              <h3>{{ recipe.title }}</h3>
+              <p>Ingredients</p>
+              <ul>
+                  {% for ingredient in recipe.ingredients %}
+                      <li>{{ ingredient }}
+                  {% endfor %}
+
+              </ul>
+              <p>Instructions</p>
+              <ul>
+                  {% for instruction in recipe.instructions %}
+                      <li>{{ instruction }}
+                  {% endfor %}
+              </ul>
+              <p>{{ recipe.likes }} likes</p>
+          </div>
+          {% endfor %}
+      {% endif %}
+  </div>
 {% endblock %}
