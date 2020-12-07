@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from app import db
+from app.dbschema.users import User
 from app.entities.models import PostForm, LikeForm
 from app.dbschema.recipe import Recipe
 from app.dbschema.likes import LikePost
@@ -41,3 +42,32 @@ def likePost(recipe_id):
         current_user.like(recipe)
         db.session.commit()
         return redirect(url_for("mod_post.posts"))
+
+@mod_post.route('/editPost/<int:recipe_id>', methods=['POST'])
+def editPost(recipe_id):
+    update = Recipe.query.get(recipe_id)
+    update.title = request.form['title']
+    print(request.form['item'])
+    update.ingredients = request.form['item']
+    print(update.ingredients)
+    print(update.instructions)
+    update.instructions = request.form['list']
+    print(update.instructions)
+    try:
+        db.session.commit()
+    except:
+        return "Error deleting from database"  
+    return redirect(url_for("mod_post.posts"))
+
+
+@mod_post.route('/deletePost/<recipe_id>', methods=['POST','GET'])
+def deletePost(recipe_id):
+    recipe = Recipe.query.get(recipe_id)
+    print(recipe)
+    db.session.delete(recipe)
+    try:
+        db.session.commit()
+    except:
+	    return "Error deleting from database"
+    return redirect(url_for("mod_post.posts"))
+
