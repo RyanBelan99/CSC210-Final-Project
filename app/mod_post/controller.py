@@ -12,7 +12,10 @@ mod_post = Blueprint('mod_post', __name__)
 def posts():
         recipes = Recipe.query.order_by(desc(Recipe.date_created))
         form = LikeForm(request.form)
-        return render_template("post/posts.html", recipes=recipes, form=form)
+        usernames=[]
+        for recipe in recipes:
+            usernames.append(Recipe.query.filter_by(id=recipe.id).first_or_404().username)
+        return render_template("post/posts.html", recipes=recipes, form=form, usernames=usernames)
 
 @mod_post.route('/createPost', methods=['POST', 'GET'])
 def createPost():
@@ -21,7 +24,7 @@ def createPost():
             if form.validate_on_submit():
                 ingredientList = list(filter(None, form.ingredients.data))
                 instructionList = list(filter(None, form.instructions.data))
-                new_recipe = Recipe(title = form.title.data, ingredients = ingredientList, instructions = instructionList, user_id=current_user.id, total_likes=0)
+                new_recipe = Recipe(title = form.title.data, ingredients = ingredientList, instructions = instructionList, username=current_user.username, total_likes=0)
                 try:
                     db.session.add(new_recipe)
                     db.session.commit()
@@ -36,7 +39,7 @@ def createPost():
 
 @mod_post.route('/likePost/<int:recipe_id>', methods=['POST', 'GET'])
 def likePost(recipe_id):
-    if current_user.is_authenticated and current_user.id != Recipe.query.filter_by(id=recipe_id).first_or_404().user_id:
+    if current_user.is_authenticated and current_user.username != Recipe.query.filter_by(id=recipe_id).first_or_404().username:
         recipe = Recipe.query.filter_by(id=recipe_id).first_or_404()
         current_user.like(recipe)
         db.session.commit()
