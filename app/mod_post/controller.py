@@ -36,8 +36,8 @@ def createPost():
 
 @mod_post.route('/likePost/<int:recipe_id>', methods=['POST', 'GET'])
 def likePost(recipe_id):
-    if current_user.is_authenticated:
+    if current_user.is_authenticated and current_user.id != Recipe.query.filter_by(id=recipe_id).first_or_404().user_id:
         recipe = Recipe.query.filter_by(id=recipe_id).first_or_404()
         current_user.like(recipe)
         db.session.commit()
-        return redirect(url_for("mod_post.posts"))
+    return redirect(url_for("mod_post.posts"))
