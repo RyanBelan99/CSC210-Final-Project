@@ -40,13 +40,12 @@
 
 
   </div>
-  <h3>This Week's Standings</h3>
+  <h4>This Week's Standings</h4>
   <div class="row">
       {% if recipes %}
           {% for recipe in recipes.slice(0, 5) %}
           <div class="posting">
-              <h3>{{loop.index}}</h3>
-              <h3>{{ recipe.title }}</h3>
+              <h3>{{loop.index}}. {{ recipe.title }}</h3>
               <p>Ingredients</p>
               <ul>
                   {% for ingredient in recipe.ingredients %}
