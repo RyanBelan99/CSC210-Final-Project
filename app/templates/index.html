@@ -45,6 +45,7 @@
       {% if recipes %}
           {% for recipe in recipes.slice(0, 5) %}
           <div class="posting">
+              <h3>{{loop.index}}</h3>
               <h3>{{ recipe.title }}</h3>
               <p>Ingredients</p>
               <ul>
