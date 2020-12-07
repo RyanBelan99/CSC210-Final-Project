@@ -19,12 +19,8 @@ def createPost():
         form = PostForm(request.form)
         if current_user.is_authenticated:
             if form.validate_on_submit():
-                ingredientList = form.ingredients.data
-                instructionList = form.instructions.data
-                while("" in ingredientList):
-                    ingredientList.remove("")
-                while("" in instructionList):
-                    instructionList.remove("")
+                ingredientList = list(filter(None, form.ingredients.data))
+                instructionList = list(filter(None, form.instructions.data))
                 new_recipe = Recipe(title = form.title.data, ingredients = ingredientList, instructions = instructionList, user_id=current_user.id, total_likes=0)
                 try:
                     db.session.add(new_recipe)
