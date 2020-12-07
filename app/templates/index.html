@@ -43,7 +43,7 @@
   <h3>This Week's Standings</h3>
   <div class="row">
       {% if recipes %}
-          {% for recipe in recipes %}
+          {% for recipe in recipes.slice(0, 5) %}
           <div class="posting">
               <h3>{{ recipe.title }}</h3>
               <p>Ingredients</p>
