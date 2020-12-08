@@ -13,9 +13,9 @@ def index():
     recipes=[]
     for c in competing_ids:
         recipes.append(Recipe.query.filter_by(id=c.id).first_or_404())
-    
+    recipes.sort(key=lambda x: x.total_likes, reverse=True)
     winnerRecipes = LastWeeksWinners.query.limit(3)
-    return render_template("index.html", recipes=recipes, winnerRecipes = winnerRecipes)
+    return render_template("index.html", recipes=recipes[:5], winnerRecipes = winnerRecipes)
 
 
 @mod_main.route('/login')
