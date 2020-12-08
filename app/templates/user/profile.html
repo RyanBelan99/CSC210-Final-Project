@@ -5,13 +5,13 @@
         <h1>Your Profile</h1>
     </div>
     <div class="row">
-        <div class="col-sm-6"><h3>Name: {{name}}</h3></div>
-        <div class="col-sm-6"><h3>Username: {{username}}</h3></div>
+        <div class="col-sm-6"><h4>Name: {{name}}</h4></div>
+        <div class="col-sm-6"><h4>Username: {{username}}</h4></div>
     </div>
     <div class="row top-margin">
-        <div class="col-sm-6"><h3>Birthday: {{birth}}</h3></div>
+        <div class="col-sm-6"><h4>Birthday: {{birth}}</h4></div>
         <div class="col-sm-3">
-            <a href="{{ url_for('mod_user.editProfile') }}" class="btn btn-info" role="button">Edit Informatoin</a>
+            <a href="{{ url_for('mod_user.editProfile') }}" class="btn btn-info" role="button">Edit Information</a>
         </div>
         <div class="col-sm-3">
             <a href="{{ url_for('mod_user.changePassword') }}" class="btn btn-warning" role="button">Change Password</a>
@@ -19,26 +19,30 @@
     </div>
 
     <div class="row top-margin">
-        <h3>Your Posts</h3>
+        <h4>Your Posts</h4>
     </div>
     <div class="row">
         {% if recipes %}
             {% for recipe in recipes %}
             <div class="posting">
                 <h3>{{ recipe.title }}</h3>
-                <p>Ingredients</p>
+                <h5>Ingredients</h5>
                 <ul>
                     {% for ingredient in recipe.ingredients %}
+                    <div class="points">
                         <li>{{ ingredient }}
+                    </div>
                     {% endfor %}
                 </ul>
-                <p>Instructions</p>
+                <h5>Instructions</h5>
                 <ul>
                     {% for instruction in recipe.instructions %}
+                    <div class="points">
                         <li>{{ instruction }}
+                    </div>
                     {% endfor %}
                 </ul>
-                <p>{{ recipe.likes }} likes</p>
+                <h6>{{ recipe.likes }} likes</h6>
             </div>
             <div>
                 {% if current_user.id == recipe.user_id %}

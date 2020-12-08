@@ -5,7 +5,7 @@
 
 {% block page_content %}
 <h1>Recipes</h1>
-<h3>You get 10 recipes and 10 steps. That's all you get</h3>
+<h3>You only get 10 ingredients and 10 steps, so get cracking!</h3>
 
 <hr>
     <form action="" method="POST">
@@ -19,7 +19,7 @@
         {% for ingredient in form.ingredients.entries %}
             {{ ingredient(size = 70) }}
         {% endfor %}
-        
+
     </h3>
     <h3>
         {{ form.instructions.label }}<br>
@@ -27,7 +27,7 @@
             {{ instruction(size = 70) }}
         {% endfor %}
     </h3>
-    <h3>{{ form.submit() }}</h3>
+    <input class="btn" id="submit" name="submit" type="submit">
     </form>
 </hr>
 

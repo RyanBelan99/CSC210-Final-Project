@@ -2,30 +2,27 @@
 
 {% block page_content %}
     <div style="text-align:center">
-        <h1>Create Your Haft-Baked Account</h1>
+        <h1>Create Your Half-Baked Account</h1>
         <hr>
         <form action="" method="POST">
             {{ form.hidden_tag() }}
-            <!-- {% if form.errors %}
-            {{ form.errors }}
-            {% endif %} -->
-            <p>
+            <h5>
                 {{ form.name.label }}<br>
                 {{ form.name(size=32) }}
-            </p>
-            <p>
+            </h5>
+            <h5>
                 {{ form.birth.label }}<br>
                 {{ form.birth(size=32) }}
-            </p>
-            <p>
+            </h5>
+            <h5>
                 {{ form.username.label }}<br>
                 {{ form.username(size=32) }}
-            </p>
-            <p>
+            </h5>
+            <h5>
                 {{ form.password.label }}<br>
                 {{ form.password(size=32) }}
-            </p>
-            <p> {{ form.submit() }}</p>
+            </h5>
+            <h5> {{ form.submit() }}</h5>
         </form>
         <hr>
     </div>

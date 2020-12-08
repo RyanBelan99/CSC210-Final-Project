@@ -6,15 +6,23 @@ line-height: 1.7em;
 background-color: #A7D2CB;
 }
 
+ul {
+    padding-inline-start: 20px;
+}
+
+#recipeCarousel {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 .container {
 width: 75%;
 margin: 0 auto;
 padding: 0;
-/*background-color: #ffffff;*/
 }
 
 .header {
-height:150px;
+height:100px;
 padding: 0;
 margin: 0;
 color: #000;
@@ -40,6 +48,10 @@ h2 {
 }
 
 h3 {
+  margin-top: 0px;
+}
+
+h4 {
   margin: 0;
   padding-left: 10px;
   font-size: 300%;
@@ -48,6 +60,10 @@ h3 {
   border-bottom: 1px solid #eee;
   color:  #000;
   background: inherit;
+}
+
+h5 {
+  font-size: 250%;
 }
 
 .nav a{
@@ -74,4 +90,23 @@ h3 {
 .modal-body{
     height: 80vh;
     overflow-y: auto;
+
+.intro {
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+.posting {
+  border-radius: 25px;
+  margin: 20px;
+  padding: 15px;
+  border-width:2px;
+  border-style:solid;
+  border-color:#F6F6F2;
+  background-color: #F6F6F2;
+}
+
+.points, .likeButt {
+  font-size: 175%;
+
 }

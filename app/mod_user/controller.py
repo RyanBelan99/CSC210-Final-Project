@@ -30,7 +30,7 @@ def editProfile():
     if form.validate_on_submit():
         name = request.form.get('name')
         birth = request.form.get('birth')
-        user = User.query.filter_by(username=current_user.username).first()
+        user = User.query.filter_by(id=current_user.id).first()
         setattr(user, 'name', name)
         setattr(user, 'birth', birth)
         db.session.commit()
@@ -43,7 +43,7 @@ def changePassword():
     if form.validate_on_submit():
         curPassword = request.form.get('curPassword')
         newPassword = request.form.get('newPassword')
-        user = User.query.filter_by(username=current_user.username).first()
+        user = User.query.filter_by(id=current_user.id).first()
         if not check_password_hash(user.password, curPassword) and not user:
             flash("Password Incorrect")
             return redirect(url_for('mod_user.changePassword'))

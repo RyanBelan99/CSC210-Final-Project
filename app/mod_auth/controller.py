@@ -15,7 +15,7 @@ def login():
         username = request.form.get('username')
         password = request.form.get('password')
         user = User.query.filter_by(username=username).first()
-        if not check_password_hash(user.password, password) and not user:
+        if not user or not check_password_hash(user.password, password) :
             flash("Password or Username is Incorrect")
             return redirect(url_for('mod_auth.login'))
         login_user(user)

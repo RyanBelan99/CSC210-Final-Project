@@ -7,7 +7,7 @@ class Recipe(db.Model):
     title = db.Column(db.String(100), nullable=False)
     ingredients = db.Column(db.PickleType, nullable=False)
     instructions = db.Column(db.PickleType, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    username = db.Column(db.Integer, db.ForeignKey('users.username'))
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
     liked = db.relationship('LikePost', backref='recipe', lazy='dynamic')
     total_likes = db.Column(db.Integer, nullable=False)
@@ -24,3 +24,8 @@ class Recipe(db.Model):
 
     def removeLike(self):
         self.total_likes = self.total_likes - 1
+
+class CompetingRecipes(db.Model):
+    __tablename__ = 'competingRecipes'
+    id = db.Column(db.Integer, primary_key=True)
+
