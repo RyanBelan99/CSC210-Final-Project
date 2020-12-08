@@ -11,7 +11,7 @@ class Config(object):
             'id': 'checkNewWeek',
             'func': 'app.tasks:checkNewWeek',
             'trigger': 'interval',
-            'seconds': 5, 
+            'hours': 1, 
             'replace_existing': True
         }
     ]

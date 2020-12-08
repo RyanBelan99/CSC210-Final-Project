@@ -26,15 +26,48 @@
 
     <!-- The slideshow -->
     <div class="carousel-inner">
-      <div class="item active">
-        <img src="http://placehold.it/1920x1080" class="img-fluid" alt="Item 1">
-      </div>
-      <div class="item">
-        <img src="http://placehold.it/1920x1080" class="img-fluid" alt="Item 3">
-      </div>
-      <div class="item">
-        <img src="http://placehold.it/1920x1080" class="img-fluid" alt="Item 3">
-      </div>
+      {% if winnerRecipes %}
+        {% for recipe in winnerRecipes %}
+          {% if loop.index0 == 0 %}
+          <div class="item active">
+          {% else %}
+          <div class="item">
+          {% endif %}
+            <div class="posting">
+              <h3>{{loop.index}}. {{ recipe.title }}</h3>
+              <h6>By {{ recipe.username }}</h6>
+              <h5>Ingredients</h5>
+              <ul>
+                  {% for ingredient in recipe.ingredients %}
+                  <div class="points">
+                      <li>{{ ingredient }}
+                  </div>
+                  {% endfor %}
+
+              </ul>
+              <h5>Instructions</h5>
+              <ul>
+                  {% for instruction in recipe.instructions %}
+                  <div class="points">
+                      <li>{{ instruction }}
+                  </div>
+                  {% endfor %}
+              </ul>
+              <h6>{{ recipe.likes }} likes</h6>
+            </div>
+           </div> 
+        {% endfor %}
+      {% else %}
+        <div class="item active">
+          <img src="http://placehold.it/1920x1080" class="img-fluid" alt="Item 1">
+        </div>
+        <div class="item">
+          <img src="http://placehold.it/1920x1080" class="img-fluid" alt="Item 3">
+        </div>
+        <div class="item">
+          <img src="http://placehold.it/1920x1080" class="img-fluid" alt="Item 3">
+        </div>
+    {% endif %}
     </div>
 
     <!-- Left and right controls -->
@@ -51,10 +84,10 @@
   <h4>This Week's Standings</h4>
   <div class="row">
       {% if recipes %}
-          {% for recipe in recipes.slice(0, 5) %}
+          {% for recipe in recipes %}
           <div class="posting">
               <h3>{{loop.index}}. {{ recipe.title }}</h3>
-              <h6>By {{ usernames[loop.index0] }}</h6>
+              <h6>By {{ recipe.username }}</h6>
               <h5>Ingredients</h5>
               <ul>
                   {% for ingredient in recipe.ingredients %}

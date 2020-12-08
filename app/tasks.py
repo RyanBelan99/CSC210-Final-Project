@@ -20,7 +20,6 @@ def checkNewWeek():
             return
 
         lastWipe = db.session.query(LastWeeklyWipe).one().date
-        saveStandings()
         if lastWipe < last_monday:
             saveStandings()
             wipeWeek(today)
