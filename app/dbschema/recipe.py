@@ -24,3 +24,7 @@ class Recipe(db.Model):
 
     def removeLike(self):
         self.total_likes = self.total_likes - 1
+
+class CompetingRecipes(db.Model):
+    __tablename__ = 'competingRecipes'
+    id = db.Column(db.Integer, primary_key=True)

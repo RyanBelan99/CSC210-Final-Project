@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from app import db
 from app.entities.models import PostForm, LikeForm
-from app.dbschema.recipe import Recipe
+from app.dbschema.recipe import Recipe, CompetingRecipes
 from app.dbschema.likes import LikePost
 from sqlalchemy import desc
 from flask_login import current_user
@@ -25,7 +25,9 @@ def createPost():
                 try:
                     db.session.add(new_recipe)
                     db.session.commit()
-                    recipes = Recipe.query.order_by(desc(Recipe.date_created))
+                    competing = CompetingRecipes(id = new_recipe.id)
+                    db.session.add(competing)
+                    db.session.commit()
                     return redirect(url_for('mod_post.posts'))
                 except:
                     return "There was an error adding a new recipe"

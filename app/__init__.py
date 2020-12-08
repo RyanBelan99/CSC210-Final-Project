@@ -8,6 +8,7 @@ from datetime import datetime
 from flask_migrate import Migrate
 from flask_bootstrap import Bootstrap
 from flask_login import current_user
+from app.timedEvents import TimedEvents
 
 db = SQLAlchemy()
 
@@ -53,6 +54,8 @@ def create_app():
             username = current_user.username
         return dict(username=username, birth=birth, name=name)
 
+    timedEvent = TimedEvents()  
+
     from .mod_auth.controller import mod_auth as auth_module
     app.register_blueprint(auth_module)
 
@@ -65,4 +68,9 @@ def create_app():
     from .mod_user.controller import mod_user as user_module
     app.register_blueprint(user_module)
 
-    return app
+    try:
+        # To keep the main thread alive
+        return app
+    except:
+        # shutdown if app occurs except 
+        timedEvent.shutdown()
