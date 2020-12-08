@@ -1,8 +1,10 @@
 from flask_apscheduler import APScheduler
 from datetime import date, timedelta
 from calendar import weekday
-from app.dbschema.recipe import LastWeeklyWipe, CompetingRecipes
+from app.dbschema.recipe import CompetingRecipes, Recipe
+from app.dbschema.weeklyWipe import LastWeeklyWipe, LastWeeksWinners
 from app import db
+from sqlalchemy import desc
 scheduler = APScheduler()
 
 
@@ -19,8 +21,22 @@ def checkNewWeek():
 
         lastWipe = db.session.query(LastWeeklyWipe).one().date
         if lastWipe < last_monday:
-            db.session.query(CompetingRecipes).delete()
-            setattr(db.session.query(LastWeeklyWipe).one(), 'date', today)
-            db.session.commit()
+            saveStandings()
+            wipeWeek(today)
+            
+
+def saveStandings():
+    db.session.query(LastWeeksWinners).delete()
+    recipes = Recipe.query.order_by(desc(Recipe.total_likes)).limit(3)
+    for recipe in recipes:
+        recipeCopy = LastWeeksWinners(id = recipe.id, title = recipe.title, ingredients = recipe.ingredients, instructions = recipe.instructions, username = recipe.username, date_created = recipe.date_created, total_likes = recipe.total_likes)
+        db.session.add(recipeCopy)
+        db.session.commit()
+    
+
+def wipeWeek(today):
+    db.session.query(CompetingRecipes).delete()
+    setattr(db.session.query(LastWeeklyWipe).one(), 'date', today)
+    db.session.commit()
 
     
