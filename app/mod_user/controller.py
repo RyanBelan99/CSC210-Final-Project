@@ -58,10 +58,10 @@ def editPost(recipe_id):
     form = EditRecipeForm(request.form)
     if request.method == "GET":
         form.title.data = Recipe.query.get(recipe_id).title
-        print(Recipe.query.get(recipe_id).ingredients)
-        print(Recipe.query.get(recipe_id).instructions)    
-        form.newIngredients = Recipe.query.get(recipe_id).ingredients
-        form.newInstructions = Recipe.query.get(recipe_id).instructions
+        for i, ingredient in enumerate(Recipe.query.get(recipe_id).ingredients):
+            form.newIngredients.entries[i].data = ingredient
+        for i, instruction in enumerate(Recipe.query.get(recipe_id).instructions):
+            form.newInstructions.entries[i].data = instruction
     if form.validate_on_submit():
         title = request.form.get('title')
         ingredients = request.form.get('newIngredients')
@@ -88,7 +88,3 @@ def deletePost(recipe_id):
     except:
 	    return "Error deleting from database"
     return redirect(url_for("mod_user.profile"))
-
-
-
-

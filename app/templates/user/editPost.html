@@ -3,7 +3,7 @@
     {{ super() }}
     <div class="modal show" id="myModal" role="dialog">
         <div class="modal-dialog">
-        
+
           <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header">
@@ -13,30 +13,30 @@
             <div class="modal-body">
                 <h1>Recipes Edit</h1>
                 <h3>You get 10 recipes and 10 steps. That's all you get</h3>
-                
+
                 <hr>
                     <form action="" method="POST">
                         {{ form.hidden_tag() }}
                     <h3>
                         {{ form.title.label }}<br>
-                        {{ form.title(size=70) }}
+                        {{ form.title(size=50) }}
                     </h3>
                     <h3>
                         {{ form.newIngredients.label }}<br>
                         {% for ingredient in form.newIngredients.entries %}
-                            {{ ingredient(size = 70) }}
+                            {{ ingredient(size = 50) }}
                         {% endfor %}
-                        
+
                     </h3>
                     <h3>
                         {{ form.newInstructions.label }}<br>
                         {% for instruction in form.newInstructions.entries %}
-                            {{ instruction(size = 70) }}
+                            {{ instruction(size = 50) }}
                         {% endfor %}
                     </h3>
                     <h3>{{ form.submit() }}</h3>
                     </form>
-  
+
             </div>
             <div class="modal-footer">
               <button action="url_for('user_post.porfile')" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
