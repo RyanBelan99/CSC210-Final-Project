@@ -12,7 +12,12 @@ def index():
     recipes=[]
     for c in competing_ids:
         recipes.append(Recipe.query.filter_by(id=c.id).first_or_404())
-    return render_template("index.html", recipes=recipes)
+    #return str(len(competing_ids))
+    # recipes = Recipe.query.order_by(desc(Recipe.total_likes))
+    # usernames=[]
+    # for recipe in recipes:
+    #     usernames.append(Recipe.query.filter_by(id=recipe.id).first_or_404().username)
+    return render_template("index.html", recipes=recipes)#, usernames=usernames)
 
 @mod_main.route('/login')
 def login():

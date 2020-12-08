@@ -18,7 +18,9 @@ def checkNewWeek():
             return
 
         lastWipe = db.session.query(LastWeeklyWipe).one().date
-        # if lastWipe < last_monday:
-        #     db.session.query(CompetingRecipes).delete()
-        #     setattr(db.session.query(LastWeeklyWipe).one(), 'date', today)
-        #     db.session.commit()
+        if lastWipe < last_monday:
+            db.session.query(CompetingRecipes).delete()
+            setattr(db.session.query(LastWeeklyWipe).one(), 'date', today)
+            db.session.commit()
+
+    
