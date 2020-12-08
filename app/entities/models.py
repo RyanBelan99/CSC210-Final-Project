@@ -1,4 +1,5 @@
-from wtforms import TextAreaField, SubmitField, StringField, PasswordField, IntegerField, DateField, FieldList, validators
+from wtforms import TextAreaField, SubmitField, StringField, PasswordField, IntegerField, FieldList, validators
+from wtforms.fields.html5 import DateField
 from flask_wtf import FlaskForm
 
 class LoginForm(FlaskForm):
@@ -8,7 +9,7 @@ class LoginForm(FlaskForm):
 
 class SignupForm(FlaskForm):
     name = StringField('Name', [validators.DataRequired()])
-    birth = StringField("Enter your Birthday", [validators.DataRequired()])
+    birth = DateField("Enter your Birthday", [validators.DataRequired()], format='%Y-%m-%d')
     username = StringField('Enter a Username', [validators.DataRequired()])
     password = PasswordField('Enter a Password', [validators.DataRequired(), validators.Length(min=4, max=62)])
     submit = SubmitField('Sign Up')
@@ -24,7 +25,7 @@ class LikeForm(FlaskForm):
 
 class EditProfileForm(FlaskForm):
     name = StringField('Name', [validators.DataRequired()])
-    birth = StringField("Enter your Birthday", [validators.DataRequired()])
+    birth = DateField("Enter your Birthday", [validators.DataRequired()], format='%Y-%m-%d')
     submit = SubmitField('Submit')
 
 class ChangePasswordForm(FlaskForm):

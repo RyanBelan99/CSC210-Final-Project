@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-sm-6">
                     <h3>{{ form.birth.label }}: </h3>
-                    {% set f = form.birth.process_data(birth) %}
+                    {% set f = form.birth.process_data(birth.data) %}
                     {{ form.birth(size=70) }}
                 </div>
             </div>
