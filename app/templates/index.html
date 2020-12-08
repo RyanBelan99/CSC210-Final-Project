@@ -26,7 +26,7 @@
 
     <!-- The slideshow -->
     <div class="carousel-inner">
-      {% if winnerRecipes %}
+      {% if winnerRecipes.count() %}
         {% for recipe in winnerRecipes %}
           {% if loop.index0 == 0 %}
           <div class="item active">
@@ -55,7 +55,7 @@
               </ul>
               <h6>{{ recipe.total_likes }} likes</h6>
             </div>
-           </div> 
+           </div>
         {% endfor %}
       {% else %}
         <div class="item active">
