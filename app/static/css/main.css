@@ -62,3 +62,10 @@ h4 {
 .top-margin {
     margin-top:20px;
 }
+
+.posting {
+  margin: 10px;
+  border-width:2px;
+  border-style:solid;
+  border-color:black;
+}
