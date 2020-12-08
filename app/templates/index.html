@@ -5,9 +5,9 @@
   <div class="header">
     <h1>Half-Baked</h1>
   </div>
-  <h3>This Week's Featrued Item:</h3>
+  <h4>This Week's Featrued Item:</h4>
   <h2>Mushrooms</h2>
-  <h3>Last Week's Winners:</h3>
+  <h4>Last Week's Winners:</h4>
   <div id="recipeCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ul class="carousel-indicators">
@@ -40,27 +40,31 @@
 
 
   </div>
-  <h3>This Week's Standings</h3>
+  <h4>This Week's Standings</h4>
   <div class="row">
       {% if recipes %}
           {% for recipe in recipes.slice(0, 5) %}
           <div class="posting">
-              <h3>{{loop.index}}</h3>
-              <h3>{{ recipe.title }}</h3>
-              <p>Ingredients</p>
+              <h3>{{loop.index}}. {{ recipe.title }}</h3>
+              <h6>Username: {{ usernames[loop.index0] }}</h6>
+              <h5>Ingredients</h5>
               <ul>
                   {% for ingredient in recipe.ingredients %}
+                  <div class="points">
                       <li>{{ ingredient }}
+                  </div>
                   {% endfor %}
 
               </ul>
-              <p>Instructions</p>
+              <h5>Instructions</h5>
               <ul>
                   {% for instruction in recipe.instructions %}
+                  <div class="points">
                       <li>{{ instruction }}
+                  </div>
                   {% endfor %}
               </ul>
-              <p>{{ recipe.likes }} likes</p>
+              <h6>{{ recipe.likes }} likes</h6>
           </div>
           {% endfor %}
       {% endif %}

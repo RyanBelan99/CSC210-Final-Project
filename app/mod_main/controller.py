@@ -9,7 +9,10 @@ mod_main = Blueprint('mod_main', __name__)
 @mod_main.route('/')
 def index():
     recipes = Recipe.query.order_by(desc(Recipe.total_likes))
-    return render_template("index.html", recipes=recipes)
+    usernames=[]
+    for recipe in recipes:
+        usernames.append(Recipe.query.filter_by(id=recipe.id).first_or_404().username)
+    return render_template("index.html", recipes=recipes, usernames=usernames)
 
 @mod_main.route('/login')
 def login():
