@@ -28,3 +28,7 @@ class Recipe(db.Model):
 class CompetingRecipes(db.Model):
     __tablename__ = 'competingRecipes'
     id = db.Column(db.Integer, primary_key=True)
+
+class LastWeeklyWipe(db.Model):
+    __tablename__ = 'lastWeeklyWipe'
+    date = db.Column(db.Date, primary_key=True)
