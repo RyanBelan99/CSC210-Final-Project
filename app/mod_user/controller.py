@@ -4,6 +4,7 @@ from flask_login import current_user
 from app.dbschema.users import User
 from app.dbschema.recipe import Recipe
 from app import db
+from sqlalchemy import desc
 from werkzeug.security import generate_password_hash, check_password_hash
 
 mod_user = Blueprint('mod_user', __name__, url_prefix='/user')
@@ -55,11 +56,13 @@ def changePassword():
 @mod_user.route('/editPost/<int:recipe_id>', methods=['POST','GET'])
 def editPost(recipe_id):
     form = EditRecipeForm(request.form)
-    form.title.data = Recipe.query.get(recipe_id)
-    form.newIngredients.data = Recipe.query.get(recipe_id)
-    form.instructions.data = Recipe.query.get(recipe_id)
+    if request.method == "GET":
+        form.title.data = Recipe.query.get(recipe_id).title
+        print(Recipe.query.get(recipe_id).ingredients)
+        print(Recipe.query.get(recipe_id).instructions)    
+        form.newIngredients = Recipe.query.get(recipe_id).ingredients
+        form.newInstructions = Recipe.query.get(recipe_id).instructions
     if form.validate_on_submit():
-        print("test")
         title = request.form.get('title')
         ingredients = request.form.get('newIngredients')
         instructions = request.form.get('newInstructions')
