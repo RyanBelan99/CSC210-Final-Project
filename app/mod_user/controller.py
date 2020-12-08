@@ -61,12 +61,11 @@ def editPost(recipe_id):
         setattr(recipe_user,'instructions', instructions)
         try:
             db.session.commit()
-            return redirect(url_for("mod_post.posts"))
+            return redirect(url_for("mod_user.profile"))
         except:
             return "Error editing from database"
     else:
-        return render_template(url_for("mod_user.editPost"), form=form)
-
+        return render_template("user/editPost.html", form=form, recipes = inject_post())
 
 @mod_user.route('/deletePost/<recipe_id>', methods=['POST','GET'])
 def deletePost(recipe_id):
@@ -77,7 +76,14 @@ def deletePost(recipe_id):
         db.session.commit()
     except:
 	    return "Error deleting from database"
-    return redirect(url_for("mod_post.posts"))
+    return redirect(url_for("mod_user.profile"))
+
+
+@mod_user.context_processor
+def inject_post():
+    recipes = current_user.recipes
+    recipes.sort(key=lambda x: x.date_created, reverse=True)
+    return dict(recipes=recipes)
 
 
 

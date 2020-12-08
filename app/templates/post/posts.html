@@ -36,41 +36,8 @@
                 {{ form.hidden_tag() }}
                 {{ form.submit(value='Like') }}
             </form>
-            <div>
-                {% if current_user.id == recipe.user_id %}
-                <a href="{{url_for('mod_user.editPost', recipe_id = recipe.id)}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#edit{recipe.id}">Edit</a>
-                <a href="{{url_for('mod_user.deletePost', recipe_id = recipe.id)}}" class="btn btn-danger btn-xs">Delete</a>
-                {% endif %}
-                <div id="edit{recipe.id}" class="modal fade" role="dialog">
-                    {% macro render_field(form) %}
-                    <form name='form' action="{{ url_for('mod_user.editPost', recipe_id=recipe.id) }}" method="POST">
-                        
-                        {{ form.hidden_tag() }}
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <h4>{{ form.title.label }}: </h4>
-                                {% set f = form.title.process_data(title) %}
-                                {{ form.title(size=70) }}
-                            </div>
-                            <div class="col-sm-6">
-                                <h4>{{ form.ingredient.label }}: </h4>
-                                {% set f= form.ingredients.process_data(ingredient) %}
-                                {{ form.ingredient(size=70) }}    
-                            </div>    
-                            <div class="col-sm-6">
-                                <h4> {{ form.instructions.label }}: </h4>
-                                {% set f = form.instructions.process_data(instructions) %}
-                                {{ form.instructions(size=70) }}
-                            </div>
-                        </div>
-                        {{ form.submit() }}    
-                    </form>
-                    {% endmacro %}
-                </div>
-            </div>
         </div>
         {% endfor %}
     {% endif %}
 </div>
-
 {% endblock %}
