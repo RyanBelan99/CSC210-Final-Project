@@ -111,3 +111,7 @@ h5 {
   font-size: 175%;
 
 }
+
+.right {
+  float: right;
+}
