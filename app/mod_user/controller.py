@@ -28,7 +28,7 @@ def profile():
 def editProfile():
     form = EditProfileForm(request.form)
     # if request.method == "GET":
-    #     return str(User.query.get(current_user.id).birth)
+    #     form.birth.data = User.query.get(current_user.id).birth.strftime("%m/%d/%Y")
     if form.validate_on_submit():
         name = request.form.get('name')
         birth = request.form.get('birth')
