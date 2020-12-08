@@ -45,10 +45,8 @@
                 <h6>{{ recipe.likes }} likes</h6>
             </div>
             <div>
-                {% if current_user.id == recipe.user_id %}
                 <a href="{{url_for('mod_user.editPost', recipe_id = recipe.id)}}" class="btn btn-warning btn-xs" data-toggle="modal">Edit</a>
                 <a href="{{url_for('mod_user.deletePost', recipe_id = recipe.id)}}" class="btn btn-danger btn-xs">Delete</a>
-                {% endif %}
             </div>
             {% endfor %}
         {% endif %}
