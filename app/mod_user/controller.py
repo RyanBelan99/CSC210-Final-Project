@@ -55,7 +55,11 @@ def changePassword():
 @mod_user.route('/editPost/<int:recipe_id>', methods=['POST','GET'])
 def editPost(recipe_id):
     form = EditRecipeForm(request.form)
+    form.title.data = Recipe.query.get(recipe_id)
+    form.newIngredients.data = Recipe.query.get(recipe_id)
+    form.instructions.data = Recipe.query.get(recipe_id)
     if form.validate_on_submit():
+        print("test")
         title = request.form.get('title')
         ingredients = request.form.get('newIngredients')
         instructions = request.form.get('newInstructions')
