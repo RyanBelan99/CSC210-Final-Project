@@ -17,7 +17,7 @@
             <p>{{ form.submit() }}</p>
             </form>
         <hr>
-        <button href='mod_auth.signup.html'>SIGN UP</button>
+        <a href="{{ url_for('mod_auth.signup') }}" class="btn btn-info" role="button">SIGN UP</a>
     </div>
 
 {% endblock %}
