@@ -48,8 +48,8 @@ def changePassword():
         return redirect(url_for("mod_user.profile"))
     return render_template("user/editProfile.html", form=form)
 
-@mod_user.route('/editPost', methods=['POST','GET'])
-def editPost():
+@mod_user.route('/editPost/<int:recipe_id>', methods=['POST','GET'])
+def editPost(recipe_id):
     form = EditRecipeForm(request.form)
     if form.validate_on_submit():
         title = request.form.get('title')
@@ -61,11 +61,11 @@ def editPost():
         setattr(recipe_user,'instructions', instructions)
         try:
             db.session.commit()
-            return redirect(url_for("mod_user.posts"))
+            return redirect(url_for("mod_post.posts"))
         except:
             return "Error editing from database"
     else:
-        return render_template('post/posts.html', form=form, form=LikeForm())
+        return render_template(url_for("mod_user.editPost"), form=form)
 
 
 @mod_user.route('/deletePost/<recipe_id>', methods=['POST','GET'])
