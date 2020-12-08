@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from app.entities.models import EditProfileForm, ChangePasswordForm
+from app.entities.models import EditProfileForm, ChangePasswordForm, EditRecipeForm, LikeForm
 from flask_login import current_user
 from app.dbschema.users import User
 from app.dbschema.recipe import Recipe
@@ -47,3 +47,37 @@ def changePassword():
         db.session.commit()
         return redirect(url_for("mod_user.profile"))
     return render_template("user/editProfile.html", form=form)
+
+@mod_user.route('/editPost', methods=['POST','GET'])
+def editPost():
+    form = EditRecipeForm(request.form)
+    if form.validate_on_submit():
+        title = request.form.get('title')
+        ingredients = request.form.get('newIngredients')
+        instructions = request.form.get('newInstructions')
+        recipe_user = Recipe.query.filter_by(id=recipe_id).first()
+        setattr(recipe_user, 'title', title)
+        setattr(recipe_user,'ingredient', ingredients)
+        setattr(recipe_user,'instructions', instructions)
+        try:
+            db.session.commit()
+            return redirect(url_for("mod_user.posts"))
+        except:
+            return "Error editing from database"
+    else:
+        return render_template('post/posts.html', form=form, form=LikeForm())
+
+
+@mod_user.route('/deletePost/<recipe_id>', methods=['POST','GET'])
+def deletePost(recipe_id):
+    recipe = Recipe.query.get(recipe_id)
+    print(recipe)
+    db.session.delete(recipe)
+    try:
+        db.session.commit()
+    except:
+	    return "Error deleting from database"
+    return redirect(url_for("mod_post.posts"))
+
+
+

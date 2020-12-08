@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from app import db
-from app.dbschema.users import User
-from app.entities.models import PostForm, LikeForm, EditRecipeForm
+from app.entities.models import PostForm, LikeForm
 from app.dbschema.recipe import Recipe
 from app.dbschema.likes import LikePost
 from sqlalchemy import desc
@@ -42,34 +41,4 @@ def likePost(recipe_id):
         current_user.like(recipe)
         db.session.commit()
         return redirect(url_for("mod_post.posts"))
-
-@mod_post.route('/editPost/<int:recipe_id>', methods=['POST','GET'])
-def editPost(recipe_id):
-    edit_form = EditRecipeForm(request.edit_form)
-    if edit_form.validate_on_submit():
-        title = request.edit_form.get('title')
-        ingredients = request.edit_form.get('newIngredients')
-        instructions = request.edit_form.get('newInstructions')
-        recipe_user = Recipe.query.filter_by(id=recipe_id)
-        setattr(recipe_user, 'title', title)
-        setattr(recipe_user,'ingredient', ingredients)
-        setattr(recipe_user,'instructions', instructions)
-        try:
-            db.session.commit()
-        except:
-            return "Error editing from database"
-    else:
-        return render_template("post/posts.html", edit_form=edit_form)
-
-
-@mod_post.route('/deletePost/<recipe_id>', methods=['POST','GET'])
-def deletePost(recipe_id):
-    recipe = Recipe.query.get(recipe_id)
-    print(recipe)
-    db.session.delete(recipe)
-    try:
-        db.session.commit()
-    except:
-	    return "Error deleting from database"
-    return redirect(url_for("mod_post.posts"))
 

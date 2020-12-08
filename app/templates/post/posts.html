@@ -38,32 +38,31 @@
             </form>
             <div>
                 {% if current_user.id == recipe.user_id %}
-                <a href="/editPost/{{recipe.id}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#edit{{recipe.id}}">Edit</a>
-                <a href="{{url_for('mod_post.deletePost', recipe_id = recipe.id)}}" class="btn btn-danger btn-xs">Delete</a>
+                <a href="#" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#edit">Edit</a>
+                <a href="{{url_for('mod_user.deletePost', recipe_id = recipe.id)}}" class="btn btn-danger btn-xs">Delete</a>
                 {% endif %}
 
-
-                <div id="edit{{recipe.id}}" class="modal fade" role="dialog">
-                    <form action="{{ url_for('mod_post.editPost', recipe_id = recipe.id) }}" method="GET">
-                        {{ edit_form.hidden_tag() }}
+                <div id="edit" class="modal fade" role="dialog">
+                    <form name='form' action="{{ url_for('mod_user.editPost') }}" method="POST">
+                        {{ form.hidden_tag() }}
                         <div class="row">
                             <div class="col-sm-6">
-                                <h4>{{ edit_form.title.label }}: </h4>
-                                {% set f = edit_form.title.process_data(title) %}
-                                {{ edit_form.title(size=70) }}
+                                <h4>{{ form.title.label }}: </h4>
+                                {% set f = form.title.process_data(title) %}
+                                {{ form.title(size=70) }}
                             </div>
                             <div class="col-sm-6">
-                                <h4>{{ edit_form.ingredient.label }}: </h4>
-                                {% set f= edit_form.ingredients.process_data(ingredient) %}
-                                {{ edit_form.ingredient(size=70) }}    
+                                <h4>{{ form.ingredient.label }}: </h4>
+                                {% set f= form.ingredients.process_data(ingredient) %}
+                                {{ form.ingredient(size=70) }}    
                             </div>    
                             <div class="col-sm-6">
-                                <h4> {{ edit_form.instructions.label }}: </h4>
-                                {% set f = edit_form.instructions.process_data(instructions) %}
-                                {{ edit_form.instructions(size=70) }}
+                                <h4> {{ form.instructions.label }}: </h4>
+                                {% set f = form.instructions.process_data(instructions) %}
+                                {{ form.instructions(size=70) }}
                             </div>
                         </div>
-                        {{ edit_form.submit() }}    
+                        {{ form.submit() }}    
                     </form>
                 </div>
             </div>
