@@ -1,22 +1,23 @@
 {% extends "user/profile.html" %}
 {% block page_context %}
+    {{ super() }}
     <div id="edit" class="modal fade" role="dialog">
-        <form action="{{ url_for('mod_user.editPost', recipe_id=recipe.id) }}" method="POST">
+        <form action="" method="POST">
         {{ form.hidden_tag() }}
             <div class="row">
                 <div class="col-sm-6">
                     <h4>{{ form.title.label }}: </h4>
-                    {% set f = form.title.process_data(recipes.title) %}
+                    {% set f = form.title.process_data(title) %}
                     {{ form.title(size=70) }}
                 </div>
                 <div class="col-sm-6">
                     <h4>{{ form.ingredient.label }}: </h4>
-                    {% set f= form.ingredients.process_data(recipes.ingredient) %}
+                    {% set f= form.ingredients.process_data(ingredient) %}
                     {{ form.ingredient(size=70) }}    
                 </div>    
                 <div class="col-sm-6">
                     <h4> {{ form.instructions.label }}: </h4>
-                    {% set f = form.instructions.process_data(recipes.instructions) %}
+                    {% set f = form.instructions.process_data(instructions) %}
                     {{ form.instructions(size=70) }}
                 </div>
             </div>

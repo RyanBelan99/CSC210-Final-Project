@@ -51,7 +51,9 @@ def changePassword():
 @mod_user.route('/editPost/<int:recipe_id>', methods=['POST','GET'])
 def editPost(recipe_id):
     form = EditRecipeForm(request.form)
+    print("test")
     if form.validate_on_submit():
+        print("test test")
         title = request.form.get('title')
         ingredients = request.form.get('newIngredients')
         instructions = request.form.get('newInstructions')
@@ -65,7 +67,7 @@ def editPost(recipe_id):
         except:
             return "Error editing from database"
     else:
-        return render_template("user/editPost.html", form=form, recipes = inject_post())
+        return render_template("user/editPost.html", form=form)
 
 @mod_user.route('/deletePost/<recipe_id>', methods=['POST','GET'])
 def deletePost(recipe_id):
@@ -78,12 +80,6 @@ def deletePost(recipe_id):
 	    return "Error deleting from database"
     return redirect(url_for("mod_user.profile"))
 
-
-@mod_user.context_processor
-def inject_post():
-    recipes = current_user.recipes
-    recipes.sort(key=lambda x: x.date_created, reverse=True)
-    return dict(recipes=recipes)
 
 
 
