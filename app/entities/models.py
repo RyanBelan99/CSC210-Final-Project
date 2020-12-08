@@ -31,3 +31,9 @@ class ChangePasswordForm(FlaskForm):
     curPassword = PasswordField('Current Password', [validators.DataRequired()])
     newPassword = PasswordField('New Password', [validators.DataRequired()])
     submit = SubmitField('Submit')
+
+class EditRecipeForm(FlaskForm):
+    title = StringField('title', [validators.DataRequired()])
+    newIngredients = FieldList(StringField('ingredient'), min_entries=10, max_entries=10)
+    newInstructions = FieldList(StringField('instructions'), min_entries=10, max_entries=10)
+    submit = SubmitField('Submit')

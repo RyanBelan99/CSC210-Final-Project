@@ -42,7 +42,8 @@
             </ul>
             <h6>{{ recipe.likes }} likes</h6>
             <div class="likeButt">
-            <form action="{{ url_for('mod_post.likePost', recipe_id=recipe.id) }}" method="post">
+            <form action="{{ url_for('mod_post.likePost', recipe_id=recipe.id) }}" method="POST">
+
                 {{ form.hidden_tag() }}
                 {{ form.submit(value='Like') }}
             </form>
@@ -51,5 +52,4 @@
         {% endfor %}
     {% endif %}
 </div>
-
 {% endblock %}
