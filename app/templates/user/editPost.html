@@ -6,34 +6,32 @@
           <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">x</button>
-              <h4 class="modal-title">Modal Header</h4>
+              <a href="{{ url_for('mod_user.profile') }}" class="close" role="button" data-dismiss="modal">x</a>
+              <h1 class="modal-title">Recipes Edit</h1>
             </div>
             <div class="modal-body">
-                <h1>Recipes Edit</h1>
-                <h3>You get 10 recipes and 10 steps. That's all you get</h3>
+                <h3>You only get 10 ingredients and 10 steps, so get cracking!</h3>
                     <hr>
                     <form action="" method="POST">
                         {{ form.hidden_tag() }}
                     <h3>
-                        {{ form.title.label }}<br>
+                        {{ form.title.label("Title") }}<br>
                         {{ form.title(size=50) }}
                     </h3>
                     <h3>
-                        {{ form.newIngredients.label }}<br>
+                        {{ form.newIngredients.label("Ingredients") }}<br>
                         {% for ingredient in form.newIngredients.entries %}
                             {{ ingredient(size = 50) }}
                         {% endfor %}
 
                     </h3>
                     <h3>
-                        {{ form.newInstructions.label }}<br>
+                        {{ form.newInstructions.label("Instructions") }}<br>
                         {% for instruction in form.newInstructions.entries %}
                             {{ instruction(size = 50) }}
                         {% endfor %}
                     </h3>
                     <div class="modal-footer">
-                      <button action="url_for('user_post.porfile')" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                       <h3>{{ form.submit() }}</h3>
                     </div>
                     </form>
