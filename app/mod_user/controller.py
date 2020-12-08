@@ -27,6 +27,8 @@ def profile():
 @mod_user.route('/edit', methods=['POST','GET'])
 def editProfile():
     form = EditProfileForm(request.form)
+    if request.method == "GET":
+        return User.query.get(current_user.id).birth
     if form.validate_on_submit():
         name = request.form.get('name')
         birth = request.form.get('birth')
