@@ -11,7 +11,7 @@ class SignupForm(FlaskForm):
     birth = StringField("Enter your Birthday", [validators.DataRequired()])
     username = StringField('Enter a Username', [validators.DataRequired()])
     password = PasswordField('Enter a Password', [validators.DataRequired(), validators.Length(min=4, max=62)])
-    submit = SubmitField('Signup')
+    submit = SubmitField('Sign Up')
 
 class PostForm(FlaskForm):
     title = StringField('Title', [validators.DataRequired()])
@@ -21,7 +21,7 @@ class PostForm(FlaskForm):
 
 class LikeForm(FlaskForm):
     submit = SubmitField('Like')
-    
+
 class EditProfileForm(FlaskForm):
     name = StringField('Name', [validators.DataRequired()])
     birth = StringField("Enter your Birthday", [validators.DataRequired()])

@@ -3,7 +3,15 @@
 {% block page_content %}
 
   <div class="header">
-    <h1>Half-Baked</h1>
+    <h1>Welcome to Half-Baked</h1>
+  </div>
+  <div class="intro">
+    <h3>Think you have the best recipe for apple fritters? Here to improve your
+      cooking skills? Or do you just want something new? Here we have the perfect
+      recipes provided by the community to spice up your Tuesday night. Feel free
+      to post your recipes for the world to see, and if you dare, you can even
+      compete against other Half-Bakers to have your recipe featured on the homepage!
+      Happy Chopping!</h3>
   </div>
   <h4>This Week's Featrued Item:</h4>
   <h2>Mushrooms</h2>
@@ -46,7 +54,7 @@
           {% for recipe in recipes.slice(0, 5) %}
           <div class="posting">
               <h3>{{loop.index}}. {{ recipe.title }}</h3>
-              <h6>Username: {{ usernames[loop.index0] }}</h6>
+              <h6>By {{ usernames[loop.index0] }}</h6>
               <h5>Ingredients</h5>
               <ul>
                   {% for ingredient in recipe.ingredients %}
