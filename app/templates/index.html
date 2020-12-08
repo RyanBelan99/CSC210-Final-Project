@@ -51,10 +51,10 @@
   <h4>This Week's Standings</h4>
   <div class="row">
       {% if recipes %}
-          {% for recipe in recipes.slice(0, 5) %}
+          {% for recipe in recipes[:5] %}
           <div class="posting">
               <h3>{{loop.index}}. {{ recipe.title }}</h3>
-              <h6>By {{ usernames[loop.index0] }}</h6>
+              <h6>By {{ recipe.username }}</h6>
               <h5>Ingredients</h5>
               <ul>
                   {% for ingredient in recipe.ingredients %}
