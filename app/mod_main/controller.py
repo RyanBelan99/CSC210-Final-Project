@@ -9,9 +9,14 @@ mod_main = Blueprint('mod_main', __name__)
 
 @mod_main.route('/')
 def index():
-    recipes = Recipe.query.order_by(desc(Recipe.total_likes)).limit(5)
-    winnerRecipes = db.session.query(LastWeeksWinners).limit(3)
+    competing_ids = CompetingRecipes.query.all()
+    recipes=[]
+    for c in competing_ids:
+        recipes.append(Recipe.query.filter_by(id=c.id).first_or_404())
+    
+    winnerRecipes = LastWeeksWinners.query.limit(3)
     return render_template("index.html", recipes=recipes, winnerRecipes = winnerRecipes)
+
 
 @mod_main.route('/login')
 def login():
