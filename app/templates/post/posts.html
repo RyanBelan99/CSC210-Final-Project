@@ -22,14 +22,18 @@
             <h5>Ingredients</h5>
             <ul>
                 {% for ingredient in recipe.ingredients %}
+                <div class="points">
                     <li>{{ ingredient }}
+                </div>
                 {% endfor %}
 
             </ul>
             <h5>Instructions</h5>
             <ul>
                 {% for instruction in recipe.instructions %}
+                <div class="points">
                     <li>{{ instruction }}
+                </div>
                 {% endfor %}
             </ul>
             <h6>{{ recipe.likes }} likes</h6>
