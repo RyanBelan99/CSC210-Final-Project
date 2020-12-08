@@ -28,23 +28,24 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{ url_for('mod_post.posts') }}">Posts</a></li>
             </ul>
-            {%if name %}
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('mod_user.profile') }}">Profile: {{ username }}</a></li>
-                </ul>
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('mod_auth.logout') }}">Logout</a></li>
-                </ul>
-            {% endif %}
-            {% if not name %}
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('mod_auth.login') }}">Login</a></li>
-                </ul>
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('mod_auth.signup') }}">Signup</a></li>
-                </ul>
-            {% endif %}
-
+            <div class="right">
+                {%if name %}
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ url_for('mod_user.profile') }}">Profile: {{ username }}</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ url_for('mod_auth.logout') }}">Logout</a></li>
+                    </ul>
+                {% endif %}
+                {% if not name %}
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ url_for('mod_auth.login') }}">Login</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ url_for('mod_auth.signup') }}">Signup</a></li>
+                    </ul>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>
