@@ -79,6 +79,18 @@ h5 {
     margin-top:20px;
 }
 
+.modal{
+    display: block !important; /* I added this to see the modal, you don't need this */
+}
+
+/* Important part */
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    height: 80vh;
+    overflow-y: auto;
+
 .intro {
   margin-top: 10px;
   margin-bottom: 50px;
@@ -96,4 +108,5 @@ h5 {
 
 .points, .likeButt {
   font-size: 175%;
+
 }

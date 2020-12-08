@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask import Blueprint
-from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_migrate import Migrate
@@ -17,7 +16,6 @@ def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(Config)
     bootstrap = Bootstrap(app)
-    moment = Moment(app)
     application = app
 
     migrate = Migrate(app,db)
