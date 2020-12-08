@@ -64,11 +64,11 @@ def editPost(recipe_id):
             form.newInstructions.entries[i].data = instruction
     if form.validate_on_submit():
         title = request.form.get('title')
-        ingredients = request.form.get('newIngredients')
-        instructions = request.form.get('newInstructions')
+        ingredients = list(filter(None, form.newIngredients.data))
+        instructions = list(filter(None, form.newInstructions.data))
         recipe_user = Recipe.query.filter_by(id=recipe_id).first()
         setattr(recipe_user, 'title', title)
-        setattr(recipe_user,'ingredient', ingredients)
+        setattr(recipe_user,'ingredients', ingredients)
         setattr(recipe_user,'instructions', instructions)
         try:
             db.session.commit()
