@@ -13,11 +13,15 @@ def checkLogn():
     if not current_user.is_authenticated:
         return redirect(url_for("mod_auth.login"))
 
-@mod_user.route('/profile')
-def profile():
+@mod_user.context_processor
+def inject_post():
     recipes = current_user.recipes
     recipes.sort(key=lambda x: x.date_created, reverse=True)
-    return render_template("user/profile.html", recipes=recipes)
+    return dict(recipes=recipes)
+
+@mod_user.route('/profile')
+def profile():
+    return render_template("user/profile.html")
 
 @mod_user.route('/edit', methods=['POST','GET'])
 def editProfile():
@@ -51,9 +55,7 @@ def changePassword():
 @mod_user.route('/editPost/<int:recipe_id>', methods=['POST','GET'])
 def editPost(recipe_id):
     form = EditRecipeForm(request.form)
-    print("test")
     if form.validate_on_submit():
-        print("test test")
         title = request.form.get('title')
         ingredients = request.form.get('newIngredients')
         instructions = request.form.get('newInstructions')

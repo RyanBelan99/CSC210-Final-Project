@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask import Blueprint
-from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_migrate import Migrate
@@ -15,7 +14,6 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__)
     bootstrap = Bootstrap(app)
-    moment = Moment(app)
     application = app
 
     app.config['SECRET_KEY'] = 'veryverysecretkey'
