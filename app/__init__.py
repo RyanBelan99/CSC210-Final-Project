@@ -8,21 +8,23 @@ from datetime import datetime
 from flask_migrate import Migrate
 from flask_bootstrap import Bootstrap
 from flask_login import current_user
+from app.config import Config
 
 db = SQLAlchemy()
 
 
-def create_app():
+def create_app(config_class=Config):
     app = Flask(__name__)
+    app.config.from_object(Config)
     bootstrap = Bootstrap(app)
     moment = Moment(app)
     application = app
 
-    app.config['SECRET_KEY'] = 'veryverysecretkey'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///list.db'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     migrate = Migrate(app,db)
     db.init_app(app)
+
+    scheduler.init_app(app)
+    scheduler.start()
 
     login_manager = LoginManager()
     login_manager.login_view = 'mod_main.index'
@@ -53,6 +55,7 @@ def create_app():
             username = current_user.username
         return dict(username=username, birth=birth, name=name)
 
+
     from .mod_auth.controller import mod_auth as auth_module
     app.register_blueprint(auth_module)
 
@@ -66,3 +69,5 @@ def create_app():
     app.register_blueprint(user_module)
 
     return app
+
+from app.tasks import scheduler 
