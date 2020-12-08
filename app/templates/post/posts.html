@@ -18,21 +18,21 @@
         {% for recipe in recipes %}
         <div class="posting">
             <h3>{{ recipe.title }}</h3>
-            <h3>Username: {{ usernames[loop.index0] }}</h3>
-            <p>Ingredients</p>
+            <h6>Username: {{ usernames[loop.index0] }}</h6>
+            <h5>Ingredients</h5>
             <ul>
                 {% for ingredient in recipe.ingredients %}
                     <li>{{ ingredient }}
                 {% endfor %}
 
             </ul>
-            <p>Instructions</p>
+            <h5>Instructions</h5>
             <ul>
                 {% for instruction in recipe.instructions %}
                     <li>{{ instruction }}
                 {% endfor %}
             </ul>
-            <p>{{ recipe.likes }} likes</p>
+            <h6>{{ recipe.likes }} likes</h6>
             <form action="{{ url_for('mod_post.likePost', recipe_id=recipe.id) }}" method="post">
                 {{ form.hidden_tag() }}
                 {{ form.submit(value='Like') }}
