@@ -1,12 +1,24 @@
-{% extends "base.html" %}
+{% extends "user/profile.html" %}
 
 {% block page_content %}
-    <div class="header">
-        <h1>Edit Profile</h1>
-    </div>
+{{ super() }}
+<div class="modal show" tabindex="-1" id="mainModal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <a href="{{ url_for('mod_user.profile') }}" class="close" role="button" data-dismiss="modal">x</a>
+          {% if form.name %}
+            <h1 class="modal-title">Edit Profile</h1>
+          {% else %}
+            <h1 class="modal-title">Change Password</h1>
+          {% endif %}
+        </div>
+        <div class="modal-body">
     <form action="" method="POST">
         {{ form.hidden_tag() }}
         {% if form.name %}
+
             <div class="row">
                 <div class="col-sm-6">
                     <h3>{{ form.name.label }}: </h3>
@@ -19,7 +31,7 @@
                     {{ form.birth(size=70) }}
                 </div>
             </div>
-        
+
         {% else %}
             <div class="row">
                 <div class="col-sm-6">
@@ -35,12 +47,12 @@
 
         <div class="row top-margin">
             <div class="col-sm-3">
-                <a href="{{ url_for('mod_user.profile') }}" class="btn btn-danger" role="button">Cancel</a>
-            </div>
-            <div class="col-sm-3">
                 <input class="btn btn-success" id="submit" name="submit" type="submit">
             </div>
         </form>
+      </div>
     </div>
+  </div>
+</div>
 
 {% endblock %}
