@@ -23,8 +23,9 @@ def create_app(config_class=Config):
     migrate = Migrate(app,db)
     db.init_app(app)
 
-    scheduler.init_app(app)
-    scheduler.start()
+    if not scheduler.running:
+        scheduler.init_app(app)
+        scheduler.start()
 
     login_manager = LoginManager()
     login_manager.login_view = 'mod_main.index'
@@ -70,4 +71,4 @@ def create_app(config_class=Config):
 
     return app
 
-from app.tasks import scheduler 
+from app.tasks import scheduler
