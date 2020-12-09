@@ -3,7 +3,7 @@ from app.entities.models import EditProfileForm, ChangePasswordForm, EditRecipeF
 from flask_login import current_user
 from app.dbschema.users import User
 from app.dbschema.recipe import Recipe
-from app import db
+from app.app import db
 from sqlalchemy import desc
 from werkzeug.security import generate_password_hash, check_password_hash
 

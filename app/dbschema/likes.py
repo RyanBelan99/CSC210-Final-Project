@@ -1,5 +1,5 @@
 from flask import Flask
-from app import db
+from app.app import db
 
 class LikePost(db.Model):
     __tablename__ = 'likepost'

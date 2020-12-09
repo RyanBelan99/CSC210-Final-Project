@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from app import db
+from app.app import db
 from app.entities.models import PostForm, LikeForm
 from app.dbschema.recipe import Recipe, CompetingRecipes
 from app.dbschema.likes import LikePost
