@@ -80,16 +80,19 @@ h5 {
 }
 
 .modal{
-    display: block !important; /* I added this to see the modal, you don't need this */
+    display: block;
 }
 
-/* Important part */
 .modal-dialog{
-    overflow-y: initial !important
+    overflow-y: initial;
 }
 .modal-body{
     height: 80vh;
     overflow-y: auto;
+}
+
+#small_modals {
+  height:100%;
 }
 
 .intro {
