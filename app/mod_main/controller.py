@@ -17,7 +17,7 @@ def index():
     for c in competing_ids:
         recipes.append(Recipe.query.filter_by(id=c.id).first_or_404())
     recipes.sort(key=lambda x: x.total_likes, reverse=True)
-    winnerRecipes = LastWeeksWinners.query.limit(3)
+    winnerRecipes = LastWeeksWinners.query.order_by(desc(LastWeeksWinners.total_likes)).limit(3)
     if db.session.query(WeekInfo).count() == 0:
             initFirstWeek()
     featuredItem = db.session.query(WeekInfo).one().featuredItem
