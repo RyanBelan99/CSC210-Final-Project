@@ -14,12 +14,11 @@ if __name__ == "__main__":
 
 db = SQLAlchemy()
 
-application = create_app()
-
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(Config)
     bootstrap = Bootstrap(app)
+    application = app
 
     migrate = Migrate(app,db)
     db.init_app(app)
