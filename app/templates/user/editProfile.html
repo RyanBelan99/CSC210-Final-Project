@@ -21,26 +21,30 @@
 
             <div class="row">
                 <div class="col-sm-6">
-                    <h3>{{ form.name.label }}: </h3>
+                    <h5>{{ form.name.label }}:
                     {% set f = form.name.process_data(name) %}
-                    {{ form.name(size=70) }}
+                    {{ form.name(size=30) }}
+                    </h5>
                 </div>
                 <div class="col-sm-6">
-                    <h3>{{ form.birth.label }}: </h3>
+                    <h5>{{ form.birth.label }}:
                     {% set f = form.birth.process_data(birth.data) %}
                     {{ form.birth(size=70) }}
+                    </h5>
                 </div>
             </div>
 
         {% else %}
             <div class="row">
-                <div class="col-sm-6">
-                    <h3>{{ form.curPassword.label }}: </h3>
-                    {{ form.curPassword(size=70) }}
+                <div class="col-sm-6" id="curPass">
+                    <h5>{{ form.curPassword.label }}:
+                    {{ form.curPassword(size=25) }}
+                    </h5>
                 </div>
-                <div class="col-sm-6">
-                    <h3>{{ form.newPassword.label }}: </h3>
-                    {{ form.newPassword(size=70) }}
+                <div class="col-sm-6" id="newPass">
+                    <h5>{{ form.newPassword.label }}:
+                    {{ form.newPassword(size=25) }}
+                     </h5>
                 </div>
             </div>
         {% endif %}

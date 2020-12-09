@@ -1,6 +1,7 @@
 # Import flask dependencies
 from flask import Blueprint, request, render_template, flash, g, session, redirect, url_for
 from app.dbschema.recipe import Recipe, CompetingRecipes
+from app.entities.models import LikeForm
 from app.dbschema.weeklyWipe import LastWeeksWinners, WeekInfo
 from sqlalchemy import desc
 from app import db
@@ -10,6 +11,7 @@ mod_main = Blueprint('mod_main', __name__)
 
 @mod_main.route('/')
 def index():
+    form = LikeForm(request.form)
     competing_ids = CompetingRecipes.query.all()
     recipes=[]
     for c in competing_ids:
@@ -19,7 +21,7 @@ def index():
     if db.session.query(WeekInfo).count() == 0:
             initFirstWeek()
     featuredItem = db.session.query(WeekInfo).one().featuredItem
-    return render_template("index.html", recipes=recipes[:5], winnerRecipes = winnerRecipes, featuredItem = featuredItem)
+    return render_template("index.html", recipes=recipes[:5], winnerRecipes = winnerRecipes, featuredItem = featuredItem, form=form)
 
 
 @mod_main.route('/login')

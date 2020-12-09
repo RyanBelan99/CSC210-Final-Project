@@ -39,10 +39,13 @@ def createPost():
         else:
             return redirect(url_for('mod_auth.login'))
 
-@mod_post.route('/likePost/<int:recipe_id>', methods=['POST', 'GET'])
-def likePost(recipe_id):
+@mod_post.route('/likePost/<int:recipe_id>/<int:index>', methods=['POST', 'GET'])
+def likePost(recipe_id, index):
     if current_user.is_authenticated:
         recipe = Recipe.query.filter_by(id=recipe_id).first_or_404()
         current_user.like(recipe)
         db.session.commit()
-    return redirect(url_for("mod_post.posts"))
+    if index:
+        return redirect(url_for("mod_main.index"))
+    else:
+        return redirect(url_for("mod_post.posts"))
