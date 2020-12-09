@@ -28,8 +28,7 @@
                 </div>
                 <div class="col-sm-6">
                     <h5>{{ form.birth.label }}:
-                    {% set f = form.birth.process_data(birth.data) %}
-                    {{ form.birth(size=70) }}
+                      <input type="date" name="birth" id="birth" required size="70" value="{{ birth }}">
                     </h5>
                 </div>
             </div>
