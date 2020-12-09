@@ -115,3 +115,7 @@ h5 {
 .right {
   float: right;
 }
+
+#curPass, #newPass {
+  padding-right: 0px;
+}

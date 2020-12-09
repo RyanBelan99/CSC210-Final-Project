@@ -14,23 +14,23 @@
                     <hr>
                     <form action="" method="POST">
                         {{ form.hidden_tag() }}
-                    <h3>
+                    <h5>
                         {{ form.title.label("Title") }}<br>
-                        {{ form.title(size=50) }}
-                    </h3>
-                    <h3>
+                        {{ form.title(size=60) }}
+                    </h5>
+                    <h5>
                         {{ form.newIngredients.label("Ingredients") }}<br>
                         {% for ingredient in form.newIngredients.entries %}
-                            {{ ingredient(size = 50) }}
+                            {{ ingredient(size = 60) }}
                         {% endfor %}
 
-                    </h3>
-                    <h3>
+                    </h5>
+                    <h5>
                         {{ form.newInstructions.label("Instructions") }}<br>
                         {% for instruction in form.newInstructions.entries %}
-                            {{ instruction(size = 50) }}
+                            {{ instruction(size = 60) }}
                         {% endfor %}
-                    </h3>
+                    </h5>
                     <div class="modal-footer">
                         <input class="btn btn-success" id="submit" name="submit" type="submit">
                     </div>
