@@ -1,8 +1,9 @@
 from app import db
 
-class LastWeeklyWipe(db.Model):
+class WeekInfo(db.Model):
     __tablename__ = 'lastWeeklyWipe'
-    date = db.Column(db.Date, primary_key=True)
+    lastWipeDate = db.Column(db.Date, primary_key=True)
+    featuredItem = db.Column(db.String(100), nullable=False)
 
 class LastWeeksWinners(db.Model):
     __tablename__ = 'LastWeeksWinners'
