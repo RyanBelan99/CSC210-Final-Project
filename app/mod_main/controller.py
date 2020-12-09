@@ -4,7 +4,7 @@ from app.dbschema.recipe import Recipe, CompetingRecipes
 from app.entities.models import LikeForm
 from app.dbschema.weeklyWipe import LastWeeksWinners, WeekInfo
 from sqlalchemy import desc
-from app import db
+from app.app import db
 from app.tasks import initFirstWeek
 
 mod_main = Blueprint('mod_main', __name__)

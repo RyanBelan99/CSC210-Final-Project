@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_login import UserMixin
-from app import db
+from app.app import db
 from app.dbschema.recipe import Recipe
 from app.dbschema.likes import LikePost
 

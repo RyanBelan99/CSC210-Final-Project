@@ -1,4 +1,4 @@
-from app import db
+from app.app import db
 from datetime import datetime
 from sqlalchemy.ext.hybrid import hybrid_property
 class Recipe(db.Model):

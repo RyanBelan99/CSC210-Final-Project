@@ -1,9 +1,7 @@
 from flask_apscheduler import APScheduler
 from datetime import date, timedelta
 from calendar import weekday
-from app.dbschema.recipe import CompetingRecipes, Recipe
-from app.dbschema.weeklyWipe import WeekInfo, LastWeeksWinners
-from app import db
+
 from sqlalchemy import desc
 from app.config import FeaturedIngredients
 from random import choice
@@ -53,3 +51,6 @@ def initFirstWeek():
         db.session.add(curDate)
         db.session.commit()
     
+from app.dbschema.recipe import CompetingRecipes, Recipe
+from app.dbschema.weeklyWipe import WeekInfo, LastWeeksWinners
+from app.app import db
