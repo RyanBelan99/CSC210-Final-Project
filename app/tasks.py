@@ -2,9 +2,11 @@ from flask_apscheduler import APScheduler
 from datetime import date, timedelta
 from calendar import weekday
 from app.dbschema.recipe import CompetingRecipes, Recipe
-from app.dbschema.weeklyWipe import LastWeeklyWipe, LastWeeksWinners
+from app.dbschema.weeklyWipe import WeekInfo, LastWeeksWinners
 from app import db
 from sqlalchemy import desc
+from app.config import FeaturedIngredients
+from random import choice
 scheduler = APScheduler()
 
 
@@ -13,16 +15,15 @@ def checkNewWeek():
     with app.app_context():
         today = date.today()
         last_monday = today - timedelta(days=today.weekday())
-        if db.session.query(LastWeeklyWipe).count() == 0:
-            curDate = LastWeeklyWipe(date = last_monday)
-            db.session.add(curDate)
-            db.session.commit()
+        if db.session.query(WeekInfo).count() == 0:
+            initFirstWeek()
             return
 
-        lastWipe = db.session.query(LastWeeklyWipe).one().date
+        lastWipe = db.session.query(WeekInfo).one().lastWipeDate
         if lastWipe < last_monday:
             saveStandings()
             wipeWeek(today)
+            generateNewFeaturedItem()
             
 
 def saveStandings():
@@ -36,7 +37,19 @@ def saveStandings():
 
 def wipeWeek(today):
     db.session.query(CompetingRecipes).delete()
-    setattr(db.session.query(LastWeeklyWipe).one(), 'date', today)
+    setattr(db.session.query(WeekInfo).one(), 'lastWipeDate', today)
     db.session.commit()
 
+def generateNewFeaturedItem():
+    setattr(db.session.query(WeekInfo).one(), 'featuredItem', getRandomFeturedItem())
+    db.session.commit()
+
+def getRandomFeturedItem():
+    return choice(FeaturedIngredients.possibleItems)
+
+def initFirstWeek():
+        today = date.today()
+        curDate = WeekInfo(lastWipeDate = today, featuredItem = getRandomFeturedItem())
+        db.session.add(curDate)
+        db.session.commit()
     

@@ -19,3 +19,6 @@ class Config(object):
     #     'default': SQLAlchemyJobStore(url='sqlite:///flask_context.db')
     # }
     SCHEDULER_API_ENABLED = True
+
+class FeaturedIngredients:
+    possibleItems = ['Mushroom', 'Bread', 'Flat Breads', 'Salad', 'Curry', 'Pasta', 'Seafood']
